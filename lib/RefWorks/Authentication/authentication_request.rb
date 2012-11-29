@@ -1,3 +1,7 @@
-class AuthenticationRequest
-  # To change this template use File | Settings | File Templates.
+class AuthenticationRequest < Request
+
+  def self.callClass
+    'Authentication'
+  end
+
 end
