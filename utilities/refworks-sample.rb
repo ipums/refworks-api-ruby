@@ -1,4 +1,4 @@
-require File.expand_path('../lib/RefWorks/ref_works_client.rb')
+  require File.expand_path('../lib/refworks.rb')
 #require './config.rb'
 
 config = {:accessKey => '***REMOVED***',
@@ -9,8 +9,9 @@ config = {:accessKey => '***REMOVED***',
           :apiURL    => 'https://www.refworks.com/api2/',
 }
 
-rwc = RefWorksClient.new(config)
-response = rwc.request(:className => 'Authentication',
+rwc = Refworks.new(config)
+
+response = rwc.request(:className => 'authentication',
             :methodName => 'Newsess',
             :methodParams => {
                 :loginName => rwc.loginName(),

@@ -1,18 +1,21 @@
 require 'rubygems'  
-require 'HTTParty'
+require 'httparty'
 require 'cgi'
 require 'pp'
-require_relative('./Request.rb')
-require_relative('./Authentication/authentication_request.rb')
-require_relative('./Authentication/newsess/newsess_request.rb')
 
-class RefWorksClient
+# This will recursively load all child classes - done this way
+# because there are many, many child classes, and makes it easier
+# to keep adding support for more parts of the refworks API
+require 'require_all'
+require_rel 'refworks'
+
+class Refworks
   include HTTParty
-  debug_output $stderr
 
   attr_reader :apiURL, :accessKey, :secretKey, :loginName, :password, :groupCode
 
   def initialize(params)
+    self.class.debug_output $stderr
     @apiURL = params[:apiURL]
     @accessKey = params[:accessKey]
     @secretKey = params[:secretKey]
@@ -28,9 +31,9 @@ class RefWorksClient
     Object.const_get(className + methodName + 'Request')
   end
 
-  def generateQueryParams(requestParams, signatureParams, sessionParams)
+  def generateQueryParams(requestParams, signatureParams, sessionParams=nil)
 
-    requestParamString = requestParams.collect { |key, value| "#{key}=#{value}"}.join("&")
+    request_param_string = requestParams.collect { |key, value| "#{key}=#{value}"}.join("&")
     signatureParamString = signatureParams.collect { |key, value| "#{key}=#{value}"}.join("&")
     if (!sessionParams)
       sessionParamString = ''
@@ -38,7 +41,7 @@ class RefWorksClient
       sessionParamString = sessionParams.collect { |key, value| "#{key}=#{value}"}.join("&")
     end
 
-    requestParamString + '&' + signatureParamString + '&' + sessionParamString
+    request_param_string + '&' + signatureParamString + '&' + sessionParamString
   end
 
   def request(params)
@@ -47,12 +50,11 @@ class RefWorksClient
 
     signatureParams = requestClass.generateSignature(params[:className],self.accessKey,self.secretKey)
 
-    queryParams = self.generateQueryParams(requestInfo[:params], signatureParams, nil)
+    queryParams = self.generateQueryParams(requestInfo[:params], signatureParams)
 
     url = self.apiURL + "?#{queryParams}"
 
     if (requestClass.httpRequestVerb == 'POST')
-      self.class.debug_output $stderr
       response = self.class.post(url, :body => requestInfo[:body], :headers => requestInfo[:headers])
       pp response.body
     else
