@@ -25,7 +25,9 @@ class AuthenticationNewsessRequest < AuthenticationRequest
     groupCode = params[:groupCode]
 
     messageBody = <<-EOS
-      <RWRequest class="authentication" method="newsess"><AcctInfo loginName="#{loginName}" groupCode="#{groupCode}" password="#{password}"></AcctInfo></RWRequest>
+      <RWRequest class="authentication" method="newsess">
+        <AcctInfo loginName="#{loginName}" groupCode="#{groupCode}" password="#{password}"></AcctInfo>
+      </RWRequest>
     EOS
 
     # return the request info
