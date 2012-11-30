@@ -1,12 +1,18 @@
 module RefWorks
   module Config
     CONFIG = {
+        :api_URL    => 'https://www.refworks.com/api2/',
         :access_key => 'YOUR_REFWORKS_ACCESS_KEY_HERE',
         :secret_key => 'YOUR_REFWORKS_SECRET_KEY_HERE',
-        :group_code => 'YOUR_GROUP_CODE_HERE',
+
+        # NOTE: Only one of :id or :group_code should be defined
+        # RefWorks gives you one or the other based on your subscription type
+        #:id         => 'YOUR_REFWORKS_SUBSCRIBER_ID_HERE'
+        #:group_code => 'YOUR_REFWORKS_GROUP_CODE_HERE',
+
         :login_name => 'YOUR_LOGIN_NAME_HERE',
         :password   => 'YOUR_PASSWORD_HERE',
-        :api_URL    => 'https://www.refworks.com/api2/',
+
         # any value but nil below will turn on HTTParty's debug stream output
         :httparty_debug => nil,
     }
