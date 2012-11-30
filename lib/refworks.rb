@@ -12,50 +12,50 @@ require_rel 'refworks'
 class Refworks
   include HTTParty
 
-  attr_reader :apiURL, :accessKey, :secretKey, :loginName, :password, :groupCode
+  attr_reader :api_URL, :access_key, :secret_key, :login_name, :password, :group_code
 
   def initialize(params)
     self.class.debug_output $stderr
-    @apiURL = params[:apiURL]
-    @accessKey = params[:accessKey]
-    @secretKey = params[:secretKey]
-    @loginName = params[:loginName]
+    @api_URL = params[:api_URL]
+    @access_key = params[:access_key]
+    @secret_key = params[:secret_key]
+    @login_name = params[:login_name]
     @password = params[:password]
-    @groupCode = params[:groupCode]
+    @group_code = params[:group_code]
   end
 
-  def resolveRequestClass(params)
-    className = params[:className]
-    methodName = params[:methodName]
+  def resolve_request_class(params)
+    class_name = params[:class_name]
+    method_name = params[:method_name]
 
-    Object.const_get(className + methodName + 'Request')
+    Object.const_get([class_name, method_name, 'Request'].collect(&:capitalize).join)
   end
 
-  def generateQueryParams(requestParams, signatureParams, sessionParams=nil)
+  def generate_query_params(request_params, signature_params, session_params=nil)
 
-    request_param_string = requestParams.collect { |key, value| "#{key}=#{value}"}.join("&")
-    signatureParamString = signatureParams.collect { |key, value| "#{key}=#{value}"}.join("&")
-    if (!sessionParams)
-      sessionParamString = ''
+    request_param_string = request_params.collect { |key, value| "#{key}=#{value}"}.join("&")
+    signature_param_string = signature_params.collect { |key, value| "#{key}=#{value}"}.join("&")
+    if (!session_params)
+      session_param_string = ''
     else
-      sessionParamString = sessionParams.collect { |key, value| "#{key}=#{value}"}.join("&")
+      session_param_string = session_params.collect { |key, value| "#{key}=#{value}"}.join("&")
     end
 
-    request_param_string + '&' + signatureParamString + '&' + sessionParamString
+    request_param_string + '&' + signature_param_string + '&' + session_param_string
   end
 
   def request(params)
-    requestClass = resolveRequestClass(params)
-    requestInfo = requestClass.generateRequestInfo(params[:methodParams])
+    request_class = resolve_request_class(params)
+    request_info = request_class.generate_request_info(params[:method_params])
 
-    signatureParams = requestClass.generateSignature(params[:className],self.accessKey,self.secretKey)
+    signature_params = request_class.generate_signature(params[:class_name],self.access_key,self.secret_key)
 
-    queryParams = self.generateQueryParams(requestInfo[:params], signatureParams)
+    query_params = self.generate_query_params(request_info[:params], signature_params)
 
-    url = self.apiURL + "?#{queryParams}"
+    url = self.api_URL + "?#{query_params}"
 
-    if (requestClass.httpRequestVerb == 'POST')
-      response = self.class.post(url, :body => requestInfo[:body], :headers => requestInfo[:headers])
+    if (request_class.http_request_verb == 'POST')
+      response = self.class.post(url, :body => request_info[:body], :headers => request_info[:headers])
       pp response.body
     else
       response = get(url)

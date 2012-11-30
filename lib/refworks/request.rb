@@ -5,23 +5,21 @@ class Request
   require 'base64'
   require 'openssl'
 
-  def self.httpRequestVerb
+  def self.http_request_verb
     'GET'
   end
 
-  def self.generateSignature(callClass, accessKey, secretKey)
+  def self.generate_signature(call_class, access_key, secret_key)
 
     # Construct the RW-required signature using the algorithm from their docs
     # expires should be the current time represented in microseconds since the epoch
     expires = Time.now.to_i * 1000
 
-    pp callClass, accessKey, secretKey, expires
-
     # RW formula for signature message
-    signature = callClass + accessKey + expires.to_s.chomp
+    signature = call_class + access_key + expires.to_s.chomp
 
     # Run it through HMAC SHA1 using secret key
-    hmacsig = OpenSSL::HMAC.digest('sha1', secretKey, signature)
+    hmacsig = OpenSSL::HMAC.digest('sha1', secret_key, signature)
 
     # Base64 encode it
     # Ruby 1.8 way
@@ -38,7 +36,7 @@ class Request
     #encodedsig.gsub!(/%0A/,'')
 
     # Return hash
-    {:signature => encodedsig, :accesskeyid => CGI.escape(accessKey), :expires => expires}
+    {:signature => encodedsig, :accesskeyid => CGI.escape(access_key), :expires => expires}
   end
 
 end

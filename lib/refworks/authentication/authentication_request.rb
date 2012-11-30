@@ -1,6 +1,6 @@
 class AuthenticationRequest < Request
 
-  def self.callClass
+  def self.call_class
     'authentication'
   end
 
