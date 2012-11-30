@@ -7,6 +7,8 @@ module RefWorks
         :login_name => 'YOUR_LOGIN_NAME_HERE',
         :password   => 'YOUR_PASSWORD_HERE',
         :api_URL    => 'https://www.refworks.com/api2/',
+        # any value but nil below will turn on HTTParty's debug stream output
+        :httparty_debug => nil,
     }
   end
 end

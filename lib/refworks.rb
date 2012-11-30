@@ -15,7 +15,9 @@ class Refworks
   attr_reader :api_url, :access_key, :secret_key, :login_name, :password, :group_code
 
   def initialize(params)
-    self.class.debug_output $stderr
+    if (params[:httparty_debug])
+      self.class.debug_output $stderr
+    end
     @api_url = params[:api_url]
     @access_key = params[:access_key]
     @secret_key = params[:secret_key]
@@ -25,10 +27,8 @@ class Refworks
   end
 
   def resolve_request_class(params)
-    class_name = params[:class_name]
-    method_name = params[:method_name]
-
-    Object.const_get([class_name, method_name, 'Request'].collect(&:capitalize).join)
+    # produce appropriate camelCased class name, and convert to a constant so we can use it as a class
+    Object.const_get([params[:class_name], params[:method_name], 'Request'].collect(&:capitalize).join)
   end
 
   def generate_query_params(request_params, signature_params, session_params=nil)
