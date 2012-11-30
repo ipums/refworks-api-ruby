@@ -12,11 +12,11 @@ require_rel 'refworks'
 class Refworks
   include HTTParty
 
-  attr_reader :api_URL, :access_key, :secret_key, :login_name, :password, :group_code
+  attr_reader :api_url, :access_key, :secret_key, :login_name, :password, :group_code
 
   def initialize(params)
     self.class.debug_output $stderr
-    @api_URL = params[:api_URL]
+    @api_url = params[:api_url]
     @access_key = params[:access_key]
     @secret_key = params[:secret_key]
     @login_name = params[:login_name]
@@ -52,7 +52,7 @@ class Refworks
 
     query_params = self.generate_query_params(request_info[:params], signature_params)
 
-    url = self.api_URL + "?#{query_params}"
+    url = self.api_url + "?#{query_params}"
 
     if (request_class.http_request_verb == 'POST')
       response = self.class.post(url, :body => request_info[:body], :headers => request_info[:headers])
