@@ -31,6 +31,11 @@ class Refworks
     Object.const_get([params[:class_name], params[:method_name], 'Request'].collect(&:capitalize).join)
   end
 
+  def resolve_response_class(params)
+    # produce appropriate camelCased class name, and convert to a constant so we can use it as a class
+    Object.const_get([params[:class_name], params[:method_name], 'Response'].collect(&:capitalize).join)
+  end
+
   def generate_query_params(request_params, signature_params, session_params=nil)
 
     request_param_string = request_params.collect { |key, value| "#{key}=#{value}"}.join("&")
@@ -55,10 +60,12 @@ class Refworks
     url = self.api_url + "?#{query_params}"
 
     if (request_class.http_request_verb == 'POST')
-      response = self.class.post(url, :body => request_info[:body], :headers => request_info[:headers])
-      pp response.body
+      raw_response = self.class.post(url, :body => request_info[:body], :headers => request_info[:headers])
     else
-      response = get(url)
+      raw_response = get(url)
     end
+
+    response_class = resolve_response_class(params)
+    response = response_class.new(params, raw_response)
   end
 end

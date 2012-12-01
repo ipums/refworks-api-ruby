@@ -12,3 +12,4 @@ response = rwc.request(:class_name => 'authentication',
                        }
                       )
 
+pp response.body

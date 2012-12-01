@@ -1,3 +1,8 @@
 class AuthenticationNewsessResponse
-  # To change this template use File | Settings | File Templates.
+
+  attr_reader :body
+
+  def initialize(params, raw_response)
+    @body = raw_response.body
+  end
 end
