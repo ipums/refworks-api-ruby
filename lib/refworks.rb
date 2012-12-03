@@ -12,7 +12,7 @@ require_rel 'refworks'
 class Refworks
   include HTTParty
 
-  attr_reader :api_url, :access_key, :secret_key, :login_name, :password, :group_code
+  attr_reader :api_url, :access_key, :secret_key, :login_name, :password, :group_code, :sess
 
   def initialize(params)
     if (params[:httparty_debug])
@@ -24,6 +24,17 @@ class Refworks
     @login_name = params[:login_name]
     @password = params[:password]
     @group_code = params[:group_code]
+
+    # Can't do much without a session, so get one now
+    response = request(:class_name => 'authentication',
+                       :method_name => 'newsess',
+                       :method_params => {
+                          :login_name => self.login_name(),
+                          :group_code => self.group_code(),
+                          :password => self.password(),
+                       }
+    )
+    @sess = response.sess
   end
 
   def resolve_request_class(params)
@@ -40,10 +51,12 @@ class Refworks
 
     request_param_string = request_params.collect { |key, value| "#{key}=#{value}"}.join("&")
     signature_param_string = signature_params.collect { |key, value| "#{key}=#{value}"}.join("&")
-    if (!session_params)
+
+    # Session string handling needs to be more elegant.  Too hard coded/inflexible
+    if (!self.sess)
       session_param_string = ''
     else
-      session_param_string = session_params.collect { |key, value| "#{key}=#{value}"}.join("&")
+      session_param_string = "sess=" + CGI.escape(self.sess)
     end
 
     request_param_string + '&' + signature_param_string + '&' + session_param_string
@@ -54,7 +67,6 @@ class Refworks
     request_info = request_class.generate_request_info(params[:method_params])
 
     signature_params = request_class.generate_signature(params[:class_name],self.access_key,self.secret_key)
-
     query_params = self.generate_query_params(request_info[:params], signature_params)
 
     url = self.api_url + "?#{query_params}"
@@ -62,7 +74,7 @@ class Refworks
     if (request_class.http_request_verb == 'POST')
       raw_response = self.class.post(url, :body => request_info[:body], :headers => request_info[:headers])
     else
-      raw_response = get(url)
+      raw_response = self.class.get(url)
     end
 
     response_class = resolve_response_class(params)
