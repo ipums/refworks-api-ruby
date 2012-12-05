@@ -29,9 +29,9 @@ class Refworks
     response = request(:class_name => 'authentication',
                        :method_name => 'newsess',
                        :method_params => {
-                          :login_name => self.login_name(),
-                          :group_code => self.group_code(),
-                          :password => self.password(),
+                          :login_name => login_name,
+                          :group_code => group_code,
+                          :password => password,
                        }
     )
     @sess = response.sess
@@ -47,16 +47,21 @@ class Refworks
     Object.const_get([params[:class_name], params[:method_name], 'Response'].collect(&:capitalize).join)
   end
 
-  def generate_query_params(request_params, signature_params, session_params=nil)
+  def generate_query_params(request_params, signature_params)
 
-    request_param_string = request_params.collect { |key, value| "#{key}=#{value}"}.join("&")
-    signature_param_string = signature_params.collect { |key, value| "#{key}=#{value}"}.join("&")
+    request_param_string = request_params.collect { |key, value|
+      value = CGI.escape(value.to_s)
+      "#{key}=#{value}"}.join("&")
+
+    signature_param_string = signature_params.collect { |key, value|
+      value = CGI.escape(value.to_s)
+      "#{key}=#{value}"}.join("&")
 
     # Session string handling needs to be more elegant.  Too hard coded/inflexible
-    if (!self.sess)
+    if (!sess)
       session_param_string = ''
     else
-      session_param_string = "sess=" + CGI.escape(self.sess)
+      session_param_string = "sess=" + CGI.escape(sess)
     end
 
     request_param_string + '&' + signature_param_string + '&' + session_param_string
@@ -66,10 +71,10 @@ class Refworks
     request_class = resolve_request_class(params)
     request_info = request_class.generate_request_info(params[:method_params])
 
-    signature_params = request_class.generate_signature(params[:class_name],self.access_key,self.secret_key)
+    signature_params = request_class.generate_signature(params[:class_name], access_key, secret_key)
     query_params = self.generate_query_params(request_info[:params], signature_params)
 
-    url = self.api_url + "?#{query_params}"
+    url = api_url + "?#{query_params}"
 
     if (request_class.http_request_verb == 'POST')
       raw_response = self.class.post(url, :body => request_info[:body], :headers => request_info[:headers])
