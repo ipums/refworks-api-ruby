@@ -126,8 +126,9 @@ class Reference
   end
 
   # setup human-readable aliases as accessors
-  # I've been consistent with the RefWorks tagged format labels
+  # I've been consistent with the RefWorks tagged format legend (see end of this file)
   # plus I added some additional ones (like "authors" as a synonym for "primary_authors")
+  # which seemed particularly useful.
 
   def reference_type
     rt
