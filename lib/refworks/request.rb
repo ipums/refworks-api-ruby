@@ -27,16 +27,13 @@ class Request
     # Ruby 1.9.2 way
     encodedsig = Base64.strict_encode64(hmacsig)
 
-    # Make it URI safe
-    encodedsig = CGI.escape(encodedsig)
-
     # Base64.encode64 adds a newline at end of string if not present.  This strips it.
     # Otherwise, you get an Invalid Signature error from RW
     # Do this if you are using Ruby 1.8 and don't have access to strict_encode64 as used above
     #encodedsig.gsub!(/%0A/,'')
 
     # Return hash
-    {:signature => encodedsig, :accesskeyid => CGI.escape(access_key), :expires => expires}
+    {:signature => encodedsig, :accesskeyid => access_key, :expires => expires}
   end
 
 end
