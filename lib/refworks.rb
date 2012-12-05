@@ -83,6 +83,6 @@ class Refworks
     end
 
     response_class = resolve_response_class(params)
-    response = response_class.new(params, raw_response)
+    response = response_class.new(raw_response)
   end
 end

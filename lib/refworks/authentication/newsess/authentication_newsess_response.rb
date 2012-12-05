@@ -2,8 +2,8 @@ class AuthenticationNewsessResponse < AuthenticationResponse
 
   attr_reader :sess
 
-  def initialize(params, raw_response)
-    super(params, raw_response)
+  def initialize(raw_response)
+    super(raw_response)
     @sess = self.parsed_response["refworks"]["RWResult"]["CallInfo"]["sess"]
   end
 
