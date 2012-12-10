@@ -1,3 +1,3 @@
-class RetrieveAdvancesearchResponse
-  # To change this template use File | Settings | File Templates.
+class RetrieveAdvancesearchResponse < RetrieveResponse
+
 end
