@@ -25,8 +25,10 @@ if (response.result_code == "200")
   pp "Received " + response.total_hits + " hits, " + response.total_returned + " of which were returned."
   pp response.references
 else
+  pp references
   pp response.result_code.class
   pp response.result_msg
 end
 
+pp response.parsed_response
 

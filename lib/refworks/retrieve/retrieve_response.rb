@@ -9,11 +9,15 @@ class RetrieveResponse < Response
       @total_returned = "0"
       return
     end
+
+    # If results returned, process the references and metadata
+
     @total_hits = self.parsed_response["refworks"]["RWResult"]["RetrieveResult"]["totalHits"]
     @total_returned = self.parsed_response["refworks"]["RWResult"]["RetrieveResult"]["totalReturned"]
 
     refs = self.parsed_response["refworks"]["RWResult"]["RetrieveResult"]["reference"]
-    # here we parse out references into actual Reference objects
+
+    # here we parse out references into an array of actual Reference objects (even if only 1 ref returned)
     @references = Array.new
 
     # The RefWorks API can return an array or a single element depending on how many references were returned.
