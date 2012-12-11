@@ -16,7 +16,7 @@ class RetrieveResponse < Response
     # here we parse out references into actual Reference objects
     @references = Array.new
 
-    # RefWorks API can return an array or a single element depending on how many references were returned.
+    # The RefWorks API can return an array or a single element depending on how many references were returned.
     if (refs.class == Array)
       refs.each do |ref|
         @references << Reference.new(ref)
