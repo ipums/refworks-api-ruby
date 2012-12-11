@@ -10,6 +10,12 @@ class Reference
   # expecting a HTTParty-parsed RWResult reference hash to be passed in
   def initialize(ref)
 
+    # Basically, creating an empty ref.  For instance, if you want to
+    # hand-construct the reference one field at a time.
+    if (!ref["rt"])
+      return
+    end
+
     # Here I populate attributes which correspond to RefWorks Tagged Format.
     # See: http://www.refworks.com/rwathens/help/RefWorks_Tagged_Format.htm
     # for more details.  The tag list is in a comment at the end of this file.
