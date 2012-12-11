@@ -4,6 +4,11 @@ class RetrieveResponse < Response
 
   def initialize(raw_response)
     super(raw_response)
+    if (result_code != "200")
+      @total_hits = "0"
+      @total_returned = "0"
+      return
+    end
     @total_hits = self.parsed_response["refworks"]["RWResult"]["RetrieveResult"]["totalHits"]
     @total_returned = self.parsed_response["refworks"]["RWResult"]["RetrieveResult"]["totalReturned"]
 
