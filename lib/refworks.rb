@@ -17,7 +17,7 @@ class Refworks
   attr_reader :api_url, :access_key, :secret_key, :login_name, :password, :group_code, :sess
 
   def initialize(params)
-    if (params[:httparty_debug])
+    if params[:httparty_debug]
       self.class.debug_output $stderr
     end
     @api_url = params[:api_url]
@@ -60,10 +60,10 @@ class Refworks
       "#{key}=#{value}"}.join("&")
 
     # Session string handling needs to be more elegant.  Too hard coded/inflexible
-    if (!sess)
-      session_param_string = ''
-    else
+    if sess
       session_param_string = "sess=" + CGI.escape(sess)
+    else
+      session_param_string = ''
     end
 
     request_param_string + '&' + signature_param_string + '&' + session_param_string
@@ -78,13 +78,13 @@ class Refworks
 
     url = api_url + "?#{query_params}"
 
-    if (request_class.http_request_verb == 'POST')
+    if request_class.http_request_verb == 'POST'
       raw_response = self.class.post(url, :body => request_info[:body], :headers => request_info[:headers])
     else
       raw_response = self.class.get(url)
     end
 
     response_class = resolve_response_class(params)
-    response = response_class.new(raw_response)
+    response_class.new(raw_response)
   end
 end

@@ -4,7 +4,7 @@ class RetrieveResponse < Response
 
   def initialize(raw_response)
     super(raw_response)
-    if (result_code != "200")
+    if result_code != "200"
       @total_hits = "0"
       @total_returned = "0"
       return
@@ -21,7 +21,7 @@ class RetrieveResponse < Response
     @references = Array.new
 
     # The RefWorks API can return an array or a single element depending on how many references were returned.
-    if (refs.class == Array)
+    if refs.class == Array
       refs.each do |ref|
         @references << Reference.new(ref)
       end

@@ -1,3 +1,7 @@
+
+require "mash"
+
+#noinspection RubyTooManyInstanceVariablesInspection,RubyTooManyMethodsInspection
 class Reference
   attr_reader :rt, :rt_num, :rt_string, :sr, :id, :a1, :t1, :jf, :jo, :yr, :fd,
               :vo, :is, :sp, :op, :k1, :ab, :no, :a2, :t2, :ed, :pb, :pp, :a3,
@@ -8,127 +12,131 @@ class Reference
               :fl, :cd, :md
 
   # expecting a HTTParty-parsed RWResult reference hash to be passed in
-  def initialize(ref)
+  def initialize(rawref)
 
     # Basically, creating an empty ref.  For instance, if you want to
     # hand-construct the reference one field at a time.
-    if (!ref["rt"])
+    unless rawref["rt"]
       return
     end
+
+    # using Mash so I can use symbols as keys instead of strings, which is what
+    # is returned from httparty
+    ref = Mash.new(rawref)
 
     # Here I populate attributes which correspond to RefWorks Tagged Format.
     # See: http://www.refworks.com/rwathens/help/RefWorks_Tagged_Format.htm
     # for more details.  The tag list is in a comment at the end of this file.
 
-    @rt = ref["rt"]
+    @rt = ref[:rt]
 
     # the next two are my own extensions, not part of the RefWorks tagged format.
     # They are a decomposition of the rt complex value which I think are useful.
-    @rt_num = ref["rt"]["typeOrd"]
-    @rt_string = ref["rt"]["__content__"]
+    @rt_num = ref[:rt][:typeOrd]
+    @rt_string = ref[:rt][:__content__]
 
-    @sr = ref["sr"]
+    @sr = ref[:sr]
 
-    @id = ref["id"][0]
+    @id = ref[:id][0]
 
     # HTTParty will produce either a string or an array when it converts the XML response
     # to a Ruby data structure.  Which one it produces depends upon how
     # many authors there are.  All values are converted to Arrays, even one item
     # values, for consistency.  I do this for any field which can have more than one value.
-    @a1 = ref["a1"].class == Array ? ref["a1"] : ref["a1"].lines.to_a
+    @a1 = ref[:a1].class == Array ? ref[:a1] : ref[:a1].lines.to_a
 
-    @t1 = ref["t1"]
+    @t1 = ref[:t1]
 
-    @jf = ref["jf"]
-    @jo = ref["jo"]
-    @yr = ref["yr"]
-    @fd = ref["fd"]
-    @vo = ref["vo"]
-    @is = ref["is"]
-    @sp = ref["sp"]
-    @op = ref["op"]
+    @jf = ref[:jf]
+    @jo = ref[:jo]
+    @yr = ref[:yr]
+    @fd = ref[:fd]
+    @vo = ref[:vo]
+    @is = ref[:is]
+    @sp = ref[:sp]
+    @op = ref[:op]
 
-    if ref["k1"]
-      @k1 = ref["k1"].class == Array ? ref["k1"] : ref["k1"].lines.to_a
+    if ref[:k1]
+      @k1 = ref[:k1].class == Array ? ref[:k1] : ref[:k1].lines.to_a
     end
 
-    @ab = ref["ab"]
-    @no = ref["no"]
+    @ab = ref[:ab]
+    @no = ref[:no]
 
-    if ref["a2"]
-      @a2 = ref["a2"].class == Array ? ref["a2"] : ref["a2"].lines.to_a
+    if ref[:a2]
+      @a2 = ref[:a2].class == Array ? ref[:a2] : ref[:a2].lines.to_a
     end
 
-    @t2 = ref["t2"]
+    @t2 = ref[:t2]
 
-    @ed = ref["ed"]
-    @pb = ref["pb"]
-    @pp = ref["pp"]
+    @ed = ref[:ed]
+    @pb = ref[:pb]
+    @pp = ref[:pp]
 
-    if ref["a3"]
-      @a3 = ref["a3"].class == Array ? ref["a3"] : ref["a3"].lines.to_a
+    if ref[:a3]
+      @a3 = ref[:a3].class == Array ? ref[:a3] : ref[:a3].lines.to_a
     end
 
-    if ref["a4"]
-      @a4 = ref["a4"].class == Array ? ref["a4"] : ref["a4"].lines.to_a
+    if ref[:a4]
+      @a4 = ref[:a4].class == Array ? ref[:a4] : ref[:a4].lines.to_a
     end
 
-    if ref["a5"]
-      @a5 = ref["a5"].class == Array ? ref["a5"] : ref["a5"].lines.to_a
+    if ref[:a5]
+      @a5 = ref[:a5].class == Array ? ref[:a5] : ref[:a5].lines.to_a
     end
 
-    @t3 = ref["t3"]
-    @sn = ref["sn"]
-    @av = ref["av"]
-    @ad = ref["ad"]
-    @an = ref["an"]
-    @la = ref["la"]
-    @cl = ref["cl"]
-    @sf = ref["sf"]
-    @ot = ref["ot"]
-    @lk = ref["lk"]
-    @do = ref["do"]
-    @cn = ref["cn"]
-    @db = ref["db"]
-    @ds = ref["ds"]
-    @ip = ref["ip"]
-    @rd = ref["rd"]
-    @st = ref["st"]
-    @u1 = ref["u1"]
-    @u2 = ref["u2"]
-    @u3 = ref["u3"]
-    @u4 = ref["u4"]
-    @u5 = ref["u5"]
-    @u6 = ref["u6"]
-    @u7 = ref["u7"]
-    @u8 = ref["u8"]
-    @u9 = ref["u9"]
-    @u10 = ref["u10"]
-    @u11 = ref["u11"]
-    @u12 = ref["u12"]
-    @u13 = ref["u13"]
-    @u14 = ref["u14"]
-    @u15 = ref["u15"]
-    @ul = ref["ul"]
-    @sl = ref["sl"]
-    @ll = ref["ll"]
-    @cr = ref["cr"]
-    @wt = ref["wt"]
+    @t3 = ref[:t3]
+    @sn = ref[:sn]
+    @av = ref[:av]
+    @ad = ref[:ad]
+    @an = ref[:an]
+    @la = ref[:la]
+    @cl = ref[:cl]
+    @sf = ref[:sf]
+    @ot = ref[:ot]
+    @lk = ref[:lk]
+    @do = ref[:do]
+    @cn = ref[:cn]
+    @db = ref[:db]
+    @ds = ref[:ds]
+    @ip = ref[:ip]
+    @rd = ref[:rd]
+    @st = ref[:st]
+    @u1 = ref[:u1]
+    @u2 = ref[:u2]
+    @u3 = ref[:u3]
+    @u4 = ref[:u4]
+    @u5 = ref[:u5]
+    @u6 = ref[:u6]
+    @u7 = ref[:u7]
+    @u8 = ref[:u8]
+    @u9 = ref[:u9]
+    @u10 = ref[:u10]
+    @u11 = ref[:u11]
+    @u12 = ref[:u12]
+    @u13 = ref[:u13]
+    @u14 = ref[:u14]
+    @u15 = ref[:u15]
+    @ul = ref[:ul]
+    @sl = ref[:sl]
+    @ll = ref[:ll]
+    @cr = ref[:cr]
+    @wt = ref[:wt]
 
-    if ref["a6"]
-      @a6 = ref["a6"].class == Array ? ref["a6"] : ref["a6"].lines.to_a
+    if ref[:a6]
+      @a6 = ref[:a6].class == Array ? ref[:a6] : ref[:a6].lines.to_a
     end
 
-    @wv = ref["wv"]
-    @wp = ref["wp"]
-    @ol = ref["ol"]
-    @pmid = ref["pmid"]
-    @pmcid = ref["pmcid"]
+    @wv = ref[:wv]
+    @wp = ref[:wp]
+    @ol = ref[:ol]
+    @pmid = ref[:pmid]
+    @pmcid = ref[:pmcid]
 
     # Not documented as part of the RefWorks tagged format, but the API returns these fields
-    @fl = ref["fl"]
-    @cd = ref["cd"]
-    @md = ref["md"]
+    @fl = ref[:fl]
+    @cd = ref[:cd]
+    @md = ref[:md]
   end
 
   # setup human-readable aliases as accessors

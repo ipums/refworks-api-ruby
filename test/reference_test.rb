@@ -4,6 +4,7 @@ require "test/unit"
 require "minitest/reporters"
 MiniTest::Reporters.use!
 
+#noinspection RubyInstanceMethodNamingConvention,RubyStringKeysInHashInspection
 class ReferenceTest < Test::Unit::TestCase
   def test_empty_reference_creation
     ref = Reference.new({})
@@ -11,7 +12,7 @@ class ReferenceTest < Test::Unit::TestCase
   end
 
   def test_reference_creation_using_httparty_parsed_reference
-    ref = Reference.new({"id"=>["31932", "31932"],
+    ref = Reference.new({"id"=> %w(31932 31932),
                          "rt"=>{"typeOrd"=>"0", "__content__"=>"Generic"},
                          "a1"=>["Ozabaci,Deniz", "Henderson,Daniel J."],
                          "t1"=>
@@ -27,7 +28,7 @@ class ReferenceTest < Test::Unit::TestCase
   end
 
   def test_reference_field_population
-    ref = Reference.new({"id"=>["31932", "31932"],
+    ref = Reference.new({"id"=> %w(31932 31932),
                          "rt"=>{"typeOrd"=>"0", "__content__"=>"Generic"},
                          "a1"=>["Ozabaci,Deniz", "Henderson,Daniel J."],
                          "t1"=>
@@ -53,7 +54,7 @@ class ReferenceTest < Test::Unit::TestCase
   end
 
   def test_reference_field_aliases_and_extensions
-    ref = Reference.new({"id"=>["31932", "31932"],
+    ref = Reference.new({"id"=> %w(31932 31932),
                          "rt"=>{"typeOrd"=>"0", "__content__"=>"Generic"},
                          "a1"=>["Ozabaci,Deniz", "Henderson,Daniel J."],
                          "t1"=>

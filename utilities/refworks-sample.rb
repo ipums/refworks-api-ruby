@@ -21,7 +21,7 @@ response = rwc.request(:class_name => 'retrieve',
                        }
 )
 
-if (response.result_code == "200")
+if response.result_code == "200"
   pp "Received " + response.total_hits + " hits, " + response.total_returned + " of which were returned."
   pp response.references
 else
