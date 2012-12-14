@@ -1,3 +1,4 @@
+require 'minitest/reporters'
 require 'rake/testtask'
 
 Rake::TestTask.new do |t|

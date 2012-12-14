@@ -1,11 +1,13 @@
-require 'rubygems'  
-require 'httparty'
-require 'cgi'
-require 'pp'
+$LOAD_PATH << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/..')
+require 'rubygems'
+require 'bundler/setup'
 
 # This will recursively load all child classes - done this way
 # because there are many, many child classes, and makes it easier
 # to keep adding support for more parts of the refworks API
+require 'httparty'
+require 'cgi'
+require 'pp'
 require 'require_all'
 require_rel 'refworks'
 
