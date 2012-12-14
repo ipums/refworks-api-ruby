@@ -1,5 +1,6 @@
-require File.expand_path('../lib/refworks.rb')
-require './config/config.rb'
+$LOAD_PATH << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/..')
+require File.expand_path('lib/refworks.rb')
+require 'examples/config/config.rb'
 
 rwc = Refworks.new(RefWorks::Config::CONFIG)
 
