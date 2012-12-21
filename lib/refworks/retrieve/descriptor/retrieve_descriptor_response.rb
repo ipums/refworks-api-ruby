@@ -1,0 +1,3 @@
+class RetrieveDescriptorResponse < RetrieveResponse
+
+end

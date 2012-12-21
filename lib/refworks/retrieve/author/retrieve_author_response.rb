@@ -1,0 +1,3 @@
+class RetrieveAuthorResponse < RetrieveResponse
+
+end

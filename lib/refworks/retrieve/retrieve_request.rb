@@ -10,9 +10,8 @@ class RetrieveRequest < Request
     # query parameters common to all Retrieve calls
     {
       :class => class_name,
-      :pgsize => params[:pgsize] || 1000,
+      :pgsize => params[:pgsize] || 50,
       :pgnum => params[:pgnum] || 1,
-      :search => params[:search],
       :format => params[:format] || 'html',
       :sort => params[:sort], # no default set; according to API, default depends on method called
       :style => 0,  # no alternate styles currently supported; passed-in param will be ignored

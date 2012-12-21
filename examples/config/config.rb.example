@@ -15,6 +15,9 @@ module RefWorks
 
         # any value but nil below will turn on HTTParty's debug stream output
         :httparty_debug => nil,
+
+        # timeout, in number of seconds, HTTParty should wait for a response
+        :httparty_timeout => 30,
     }
   end
 end

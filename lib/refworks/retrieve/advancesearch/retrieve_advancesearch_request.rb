@@ -16,6 +16,7 @@ class RetrieveAdvancesearchRequest < RetrieveRequest
     # query parameters for the quick call
     method_params = { :method => call_method,
                       :classic => params[:classic] || 'true',
+                      :search => params[:search],
     }
 
     query_string_params = class_params.merge(method_params)

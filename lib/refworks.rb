@@ -20,6 +20,11 @@ class Refworks
     if params[:httparty_debug]
       self.class.debug_output $stderr
     end
+
+    if params[:httparty_timeout]
+      self.class.default_timeout(params[:httparty_timeout])
+    end
+
     @api_url = params[:api_url]
     @access_key = params[:access_key]
     @secret_key = params[:secret_key]

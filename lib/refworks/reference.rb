@@ -43,7 +43,12 @@ class Reference
     # to a Ruby data structure.  Which one it produces depends upon how
     # many authors there are.  All values are converted to Arrays, even one item
     # values, for consistency.  I do this for any field which can have more than one value.
-    @a1 = ref[:a1].class == Array ? ref[:a1] : ref[:a1].lines.to_a
+    # If not an array, and not a value, set nil
+    @a1 = if ref[:a1].class == Array then
+            ref[:a1]
+          else
+            ref[:a1] ? ref[:a1].lines.to_a : nil
+          end
 
     @t1 = ref[:t1]
 
