@@ -1,0 +1,3 @@
+class RetrieveFolderResponse < RetrieveResponse
+
+end

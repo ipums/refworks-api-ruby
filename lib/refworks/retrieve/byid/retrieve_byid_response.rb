@@ -1,0 +1,3 @@
+class RetrieveByidResponse < RetrieveResponse
+
+end

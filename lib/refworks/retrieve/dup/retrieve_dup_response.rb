@@ -1,0 +1,3 @@
+class RetrieveDupResponse < RetrieveResponse
+
+end

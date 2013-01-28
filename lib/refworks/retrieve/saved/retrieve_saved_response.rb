@@ -1,0 +1,3 @@
+class RetrieveSavedResponse < RetrieveResponse
+
+end

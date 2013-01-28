@@ -1,0 +1,3 @@
+class RetrieveNofolderResponse < RetrieveResponse
+
+end

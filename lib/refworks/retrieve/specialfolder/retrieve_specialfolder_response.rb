@@ -1,0 +1,3 @@
+class RetrieveSpecialfolderResponse < RetrieveResponse
+
+end
