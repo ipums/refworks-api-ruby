@@ -57,8 +57,17 @@ class Refworks
   def generate_query_params(request_params, signature_params)
 
     request_param_string = request_params.collect { |key, value|
-      value = CGI.escape(value.to_s)
-      "#{key}=#{value}"}.join("&")
+      # sometimes value is an array - like multiple id's for retrieve->byid
+      if value.is_a?(Array)
+        value.collect { |x|
+          x = CGI.escape(x.to_s)
+          "#{key}=#{x}"}.join("&")
+      # but usually value is a scalar
+      else
+        value = CGI.escape(value.to_s)
+        "#{key}=#{value}"
+      end
+    }.join("&")
 
     signature_param_string = signature_params.collect { |key, value|
       value = CGI.escape(value.to_s)
