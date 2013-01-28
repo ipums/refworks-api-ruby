@@ -27,13 +27,62 @@ rwc = Refworks.new(RefWorks::Config::CONFIG)
 #                       :method_params => {},
 #)
 
-response = rwc.request(:class_name => 'retrieve',
-                       :method_name => 'periodical',
-                       :method_params => {:search => "Family and Marriage"},
-)
+#response = rwc.request(:class_name => 'retrieve',
+#                       :method_name => 'periodical',
+#                       :method_params => {:search => "Family and Marriage"},
+#)
+
+#response = rwc.request(:class_name => 'retrieve',
+#                       :method_name => 'byid',
+#                       :method_params => {:id => [42154, 42160, 42400]},
+#)
+
+#response = rwc.request(:class_name => 'retrieve',
+#                       :method_name => 'dup',
+#                       :method_params => {:search => 'close'},
+#)
+
+#response = rwc.request(:class_name => 'retrieve',
+#                       :method_name => 'folder',
+#                       :method_params => {:search => 'testfolder'},
+#)
+
+#response = rwc.request(:class_name => 'retrieve',
+#                       :method_name => 'modsince',
+#                       :method_params => {:search => '999999999999'},
+#)
+
+#response = rwc.request(:class_name => 'retrieve',
+#                       :method_name => 'nofolder',
+#                       :method_params => {},
+#)
+
+#response = rwc.request(:class_name => 'retrieve',
+#                       :method_name => 'saved',
+#                       :method_params => {:saved => 'fransearch', :classic => 'true'},
+#)
+
+#response = rwc.request(:class_name => 'retrieve',
+#                       :method_name => 'specialfolder',
+#                       :method_params => {:search => 'deleted'},
+#)
+
+#response = rwc.request(:class_name => 'authentication',
+#                   :method_name => 'userexists',
+#                   :method_params => {
+#                       :login_name => "nouser",
+#                       :group_code => rwc.group_code,
+#                       :password => rwc.password,
+#                   }
+#)
+
+#response = rwc.request(:class_name => 'authentication',
+#                       :method_name => 'newtempusersess',
+#                       :method_params => {},
+#)
 
 if response.result_code == "200"
-  pp "Received " + response.total_hits + " hits, " + response.total_returned + " of which were returned."
+  #pp "Received " + response.total_hits + " hits, " + response.total_returned + " of which were returned."
   #pp response.references
 else
   #pp references
