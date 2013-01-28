@@ -1,0 +1,3 @@
+class AuthenticationDelsessResponse < AuthenticationResponse
+
+end

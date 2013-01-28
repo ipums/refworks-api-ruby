@@ -1,0 +1,3 @@
+class AuthenticationPingResponse < AuthenticationResponse
+
+end

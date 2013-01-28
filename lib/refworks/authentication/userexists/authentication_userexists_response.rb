@@ -1,0 +1,3 @@
+class AuthenticationUserexistsResponse < AuthenticationResponse
+
+end
