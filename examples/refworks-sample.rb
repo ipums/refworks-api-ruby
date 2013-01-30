@@ -140,19 +140,54 @@ rwc = Refworks.new(RefWorks::Config::CONFIG)
 #                       :method_params => {:includedb => 'false'},
 #)
 
-response = rwc.request(:class_name => 'importfilter',
-                       :method_name => 'search',
-                       :method_params => {:includedb => 'false', :search => 'MED'},
+#response = rwc.request(:class_name => 'importfilter',
+#                       :method_name => 'search',
+#                       :method_params => {:includedb => 'false', :search => 'MED'},
+#)
+
+#response = rwc.request(:class_name => 'properties',
+#                       :method_name => 'encoding',
+#                       :method_params => {},
+#)
+
+#response = rwc.request(:class_name => 'properties',
+#                       :method_name => 'fieldlabels',
+#                       :method_params => {},
+#)
+
+#response = rwc.request(:class_name => 'properties',
+#                       :method_name => 'sourcetypes',
+#                       :method_params => {},
+#)
+
+#response = rwc.request(:class_name => 'properties',
+#                       :method_name => 'typelabels',
+#                       :method_params => {},
+#)
+
+#response = rwc.request(:class_name => 'properties',
+#                       :method_name => 'languages',
+#                       :method_params => {},
+#)
+
+#response = rwc.request(:class_name => 'properties',
+#                       :method_name => 'outputlanguage',
+#                       :method_params => {},
+#)
+
+response = rwc.request(:class_name => 'properties',
+                       :method_name => 'sortlocales',
+                       :method_params => {},
 )
 
 if response.result_code == "200"
   #pp "Received " + response.total_hits + " hits, " + response.total_returned + " of which were returned."
-  pp response.importfilters
+  #pp response.importfilters
 else
   #pp references
   pp response.result_code.class
   pp response.result_msg
 end
 
-#pp response.parsed_response
+pp response.parsed_response
 
