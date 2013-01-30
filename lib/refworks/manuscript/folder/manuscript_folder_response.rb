@@ -1,0 +1,3 @@
+class ManuscriptFolderResponse
+
+end

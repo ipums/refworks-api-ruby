@@ -1,0 +1,3 @@
+class ManuscriptRequest < Request
+
+end

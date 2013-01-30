@@ -31,7 +31,7 @@ class Reference
     @rt = ref[:rt]
 
     # the next two are my own extensions, not part of the RefWorks tagged format.
-    # They are a decomposition of the rt complex value which I think are useful.
+    # They are a decomposition of the rt complex value which I think is useful.
     @rt_num = ref[:rt][:typeOrd]
     @rt_string = ref[:rt][:__content__]
 

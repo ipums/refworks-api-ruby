@@ -1,0 +1,3 @@
+class ManuscriptResponse < Response
+
+end

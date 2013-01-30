@@ -1,0 +1,3 @@
+class ManuscriptFileRequest
+
+end
