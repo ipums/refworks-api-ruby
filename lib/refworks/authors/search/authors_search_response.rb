@@ -1,0 +1,3 @@
+class AuthorsSearchResponse
+
+end

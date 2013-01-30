@@ -1,0 +1,3 @@
+class ImportfilterAllavailableResponse < ImportfilterResponse
+
+end

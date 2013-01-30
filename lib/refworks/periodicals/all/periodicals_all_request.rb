@@ -1,0 +1,3 @@
+class PeriodicalsAllRequest
+
+end

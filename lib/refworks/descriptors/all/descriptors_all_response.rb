@@ -1,0 +1,3 @@
+class DescriptorsAllResponse
+
+end

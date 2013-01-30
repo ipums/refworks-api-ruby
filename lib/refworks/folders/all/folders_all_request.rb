@@ -1,0 +1,3 @@
+class FoldersAllRequest
+
+end

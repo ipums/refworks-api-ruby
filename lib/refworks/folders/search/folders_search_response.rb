@@ -1,0 +1,3 @@
+class FoldersSearchResponse
+
+end

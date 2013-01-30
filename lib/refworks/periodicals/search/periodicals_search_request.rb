@@ -1,0 +1,3 @@
+class PeriodicalsSearchRequest
+
+end
