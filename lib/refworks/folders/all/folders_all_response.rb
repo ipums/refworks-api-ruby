@@ -1,3 +1,3 @@
-class FoldersAllResponse
+class FoldersAllResponse < FoldersResponse
 
 end

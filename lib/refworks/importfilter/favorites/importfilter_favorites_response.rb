@@ -1,3 +1,3 @@
-class ImportfilterFavoritesResponse
+class ImportfilterFavoritesResponse < ImportfilterResponse
 
 end

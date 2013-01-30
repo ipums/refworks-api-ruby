@@ -1,3 +1,3 @@
-class DescriptorsAllResponse
+class DescriptorsAllResponse < DescriptorsResponse
 
 end

@@ -1,3 +1,3 @@
-class PeriodicalsSearchResponse
+class PeriodicalsSearchResponse < PeriodicalsResponse
 
 end

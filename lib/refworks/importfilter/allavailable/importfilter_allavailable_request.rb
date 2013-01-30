@@ -1,6 +1,6 @@
-class ImportfilterAllavailableRequest < ImportfiltersRequest
+class ImportfilterAllavailableRequest < ImportfilterRequest
   def self.call_method
-    'alavailable'
+    'allavailable'
   end
 
   def self.generate_request_info(params)

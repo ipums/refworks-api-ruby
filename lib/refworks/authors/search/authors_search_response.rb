@@ -1,3 +1,3 @@
-class AuthorsSearchResponse
+class AuthorsSearchResponse < AuthorsResponse
 
 end

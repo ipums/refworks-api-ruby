@@ -1,3 +1,3 @@
-class ImportfilterSearchResponse
+class ImportfilterSearchResponse < ImportfilterResponse
 
 end

@@ -1,3 +1,3 @@
-class AuthorsAllResponse
+class AuthorsAllResponse < AuthorsResponse
 
 end

@@ -1,3 +1,3 @@
-class DescriptorsSearchResponse
+class DescriptorsSearchResponse < DescriptorsResponse
 
 end

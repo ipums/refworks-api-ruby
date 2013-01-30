@@ -1,3 +1,3 @@
-class ImportfilterAllglobalResponse
+class ImportfilterAllglobalResponse < ImportfilterResponse
 
 end
