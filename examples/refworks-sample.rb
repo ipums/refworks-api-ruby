@@ -81,14 +81,78 @@ rwc = Refworks.new(RefWorks::Config::CONFIG)
 #                       :method_params => {},
 #)
 
+#response = rwc.request(:class_name => 'authors',
+#                       :method_name => 'all',
+#                       :method_params => {},
+#)
+
+
+#response = rwc.request(:class_name => 'authors',
+#                       :method_name => 'search',
+#                       :method_params => {:search => 'Smith'},
+#)
+
+
+#response = rwc.request(:class_name => 'descriptors',
+#                       :method_name => 'all',
+#                       :method_params => {},
+#)
+
+
+#response = rwc.request(:class_name => 'descriptors',
+#                       :method_name => 'search',
+#                       :method_params => {:search => '%Segregation%'},
+#)
+
+
+#response = rwc.request(:class_name => 'periodicals',
+#                       :method_name => 'all',
+#                       :method_params => {},
+#)
+
+#response = rwc.request(:class_name => 'periodicals',
+#                       :method_name => 'search',
+#                       :method_params => {:search => 'Am'},
+#)
+
+#response = rwc.request(:class_name => 'folders',
+#                       :method_name => 'all',
+#                       :method_params => {},
+#)
+
+#response = rwc.request(:class_name => 'folders',
+#                       :method_name => 'search',
+#                       :method_params => {:search => 'test'},
+#)
+
+#response = rwc.request(:class_name => 'importfilter',
+#                       :method_name => 'allavailable',
+#                       :method_params => {:includedb => 'true'},
+#)
+
+#response = rwc.request(:class_name => 'importfilter',
+#                       :method_name => 'allglobal',
+#                       :method_params => {:includedb => 'true'},
+#)
+
+#response = rwc.request(:class_name => 'importfilter',
+#                       :method_name => 'favorites',
+#                       :method_params => {:includedb => 'false'},
+#)
+
+response = rwc.request(:class_name => 'importfilter',
+                       :method_name => 'search',
+                       :method_params => {:includedb => 'false', :search => 'MED'},
+)
+
 if response.result_code == "200"
   #pp "Received " + response.total_hits + " hits, " + response.total_returned + " of which were returned."
-  #pp response.references
+  pp response.importfilters
 else
   #pp references
   pp response.result_code.class
   pp response.result_msg
 end
 
-pp response.parsed_response
+#pp response.parsed_response
 
