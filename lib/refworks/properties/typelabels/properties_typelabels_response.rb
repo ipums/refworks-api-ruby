@@ -1,0 +1,3 @@
+class PropertiesTypelabelsResponse < PropertiesResponse
+
+end

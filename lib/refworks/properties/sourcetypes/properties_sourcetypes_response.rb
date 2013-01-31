@@ -1,0 +1,3 @@
+class PropertiesSourcetypesResponse < PropertiesResponse
+
+end

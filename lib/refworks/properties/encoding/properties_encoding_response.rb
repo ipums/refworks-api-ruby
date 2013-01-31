@@ -1,0 +1,3 @@
+class PropertiesEncodingResponse < PropertiesResponse
+
+end

@@ -1,0 +1,3 @@
+class PropertiesLanguagesResponse < PropertiesResponse
+
+end
