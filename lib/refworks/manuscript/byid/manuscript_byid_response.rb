@@ -1,3 +1,3 @@
-class ManuscriptByidResponse
+class ManuscriptByidResponse < ManuscriptResponse
 
 end

@@ -90,7 +90,7 @@ class Refworks
     signature_params = request_class.generate_signature(params[:class_name], access_key, secret_key)
     query_params = self.generate_query_params(request_info[:params], signature_params)
 
-    url = api_url + "?#{query_params}"
+    url = (params[:base_url] || api_url) + "?#{query_params}"
 
     if request_class.http_request_verb == 'POST'
       raw_response = self.class.post(url, :body => request_info[:body], :headers => request_info[:headers])

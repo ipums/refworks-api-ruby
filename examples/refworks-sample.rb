@@ -140,19 +140,55 @@ rwc = Refworks.new(RefWorks::Config::CONFIG)
 #                       :method_params => {:includedb => 'false'},
 #)
 
-response = rwc.request(:class_name => 'importfilter',
-                       :method_name => 'search',
-                       :method_params => {:includedb => 'false', :search => 'MED'},
+#response = rwc.request(:class_name => 'importfilter',
+#                       :method_name => 'search',
+#                       :method_params => {:includedb => 'false', :search => 'MED'},
+#)
+
+response = rwc.request(:class_name => 'manuscript',
+                       :method_name => 'baseurl',
+                       :method_params => {:methodname => 'text',},
+)
+
+manuscript_baseurl = response.baseurl
+
+#response = rwc.request(:class_name => 'manuscript',
+#                       :method_name => 'all',
+#                       :base_url => manuscript_baseurl,
+#                       :method_params => {:id => 1, :fileformat => 'text', :maxrefs => 3,
+#    },
+#)
+
+#response = rwc.request(:class_name => 'manuscript',
+#                       :method_name => 'byid',
+#                       :base_url => manuscript_baseurl,
+#                       :method_params => {:id => 1, :ids => [1,2,3], :fileformat => 'text',
+#                       },
+#)
+
+response = rwc.request(:class_name => 'manuscript',
+                       :method_name => 'mylist',
+                       :base_url => manuscript_baseurl,
+                       :method_params => {:id => 1, :folder => 'testfolder', :fileformat => 'word',
+                       },
+)
+
+filetoken = response.filetoken
+
+response = rwc.request(:class_name => 'manuscript',
+                       :method_name => 'file',
+                       :base_url => manuscript_baseurl,
+                       :method_params => {:filetoken => filetoken,
+                       },
 )
 
 if response.result_code == "200"
   #pp "Received " + response.total_hits + " hits, " + response.total_returned + " of which were returned."
-  pp response.importfilters
+  #pp response.filetoken
 else
   #pp references
   pp response.result_code.class
   pp response.result_msg
 end
 
-#pp response.parsed_response
-
+pp response.body
