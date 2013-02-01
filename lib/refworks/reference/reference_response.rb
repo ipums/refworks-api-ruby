@@ -1,0 +1,3 @@
+class ReferenceResponse < Response
+
+end

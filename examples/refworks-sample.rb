@@ -145,12 +145,11 @@ rwc = Refworks.new(RefWorks::Config::CONFIG)
 #                       :method_params => {:includedb => 'false', :search => 'MED'},
 #)
 
-response = rwc.request(:class_name => 'manuscript',
-                       :method_name => 'baseurl',
-                       :method_params => {:methodname => 'text',},
-)
-
-manuscript_baseurl = response.baseurl
+#response = rwc.request(:class_name => 'manuscript',
+#                       :method_name => 'baseurl',
+#                       :method_params => {:methodname => 'text',},
+#)
+#manuscript_baseurl = response.baseurl
 
 #response = rwc.request(:class_name => 'manuscript',
 #                       :method_name => 'all',
@@ -166,20 +165,20 @@ manuscript_baseurl = response.baseurl
 #                       },
 #)
 
-response = rwc.request(:class_name => 'manuscript',
-                       :method_name => 'mylist',
-                       :base_url => manuscript_baseurl,
-                       :method_params => {:id => 1, :folder => 'testfolder', :fileformat => 'word',
-                       },
-)
+#response = rwc.request(:class_name => 'manuscript',
+#                       :method_name => 'mylist',
+#                       :base_url => manuscript_baseurl,
+#                       :method_params => {:id => 1, :folder => 'testfolder', :fileformat => 'word',
+#                       },
+#)
+#filetoken = response.filetoken
 
-filetoken = response.filetoken
-
-response = rwc.request(:class_name => 'manuscript',
-                       :method_name => 'file',
-                       :base_url => manuscript_baseurl,
-                       :method_params => {:filetoken => filetoken,
-                       },
+#response = rwc.request(:class_name => 'manuscript',
+#                       :method_name => 'file',
+#                       :base_url => manuscript_baseurl,
+#                       :method_params => {:filetoken => filetoken,
+#                       },
+#)
 
 #response = rwc.request(:class_name => 'properties',
 #                       :method_name => 'encoding',
@@ -211,21 +210,43 @@ response = rwc.request(:class_name => 'manuscript',
 #                       :method_params => {},
 #)
 
-response = rwc.request(:class_name => 'properties',
-                       :method_name => 'sortlocales',
-                       :method_params => {},
+#response = rwc.request(:class_name => 'properties',
+#                       :method_name => 'sortlocales',
+#                       :method_params => {},
+#)
+
+#response = rwc.request(:class_name => 'reference',
+#                       :method_name => 'get',
+#                       :method_params => {:id => [46400]},
+#)
+
+
+#response = rwc.request(:class_name => 'savedsearch',
+#                       :method_name => 'all',
+#                       :method_params => {},
+#)
+
+response = rwc.request(:class_name => 'savedsearch',
+                       :method_name => 'get',
+                       :method_params => {:saved => 'fransearch'},
 )
 
 if response.result_code == "200"
   #pp "Received " + response.total_hits + " hits, " + response.total_returned + " of which were returned."
   #pp response.filetoken
-  #pp response.importfilters
+  #pp response.reftypes
+  #pp response.outputlanguages
+  #pp response.sortlocales
+  #pp response.sourcetypes
+  #pp response.typelabels
+  #pp response.references
+  pp response.savedsearches
 else
   #pp references
   pp response.result_code.class
   pp response.result_msg
 end
 
-pp response.body
-pp response.parsed_response
+#pp response.body
+#pp response.parsed_response
 

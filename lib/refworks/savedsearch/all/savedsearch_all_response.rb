@@ -1,0 +1,3 @@
+class SavedsearchAllResponse < SavedsearchResponse
+
+end
