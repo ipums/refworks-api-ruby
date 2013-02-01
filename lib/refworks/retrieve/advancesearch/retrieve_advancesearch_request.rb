@@ -13,7 +13,7 @@ class RetrieveAdvancesearchRequest < RetrieveRequest
     # get common Retrieve parameters
     class_params = generate_class_params(params)
 
-    # query parameters for the quick call
+    # query parameters for the advancesearch call
     method_params = { :method => call_method,
                       :classic => params[:classic] || 'true',
                       :search => params[:search],

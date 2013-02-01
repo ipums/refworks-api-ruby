@@ -3,6 +3,7 @@ class SavedsearchGetRequest < SavedsearchRequest
     'get'
   end
 
+  # @param [Object] params
   def self.generate_request_info(params)
 
     # get common Savedsearch parameters

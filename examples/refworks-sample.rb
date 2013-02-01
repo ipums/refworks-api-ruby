@@ -2,7 +2,61 @@ $LOAD_PATH << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/..')
 require File.expand_path('lib/refworks.rb')
 require 'examples/config/config.rb'
 
-rwc = Refworks.new(RefWorks::Config::CONFIG)
+rwc = Refworks.new(RefworksConfig::CONFIG)
+
+# IMPORTANT INFORMATION ABOUT API METHOD CALLS
+#
+# How to determine what to include in method_params in a request call
+# -------------------------------------------------------------------
+#
+# Each method call in the Refworks API expects a different set of parameters.  Often, some of these have
+# defaults and you are not required to explicitly include each one.  Sometimes these defaults are specified
+# by the Refworks API (e.g. language set to 'en' for Manuscript class methods), and sometimes the defaults are
+# coded into the Ruby client (e.g. default pgsize of 50 for all calls to the Retrieve class methods.)
+#
+# There are two basic approaches to figure out what you need to include in your call.
+#
+# Note: The client will always add the class and method parameters for you.  You do not need to add them to your
+# method_params (you're already providing them via class_name and method_name to the request call).
+#
+# The Easy Way
+# ------------
+#
+# Use the Refworks API documentation.  It can be found at http://rwt.refworks.com/rwapireference/
+# Click through to the method you want to call by first clicking on the Class and then on the Method.
+# Each method's documentation page has a parameter list.  Those are the parameters you can specify (in
+# all lowercase) within the method_params hash of your request call.  Refworks API defaults will be listed
+# here, and unless noted otherwise, those are carried over into the Ruby client and you can omit them.
+#
+# The downside to doing this is that it's not always obvious where the client deviates from or does not fully
+# implement the API.  There are cases where the client accepts only a subset of the values that are valid according
+# to the API spec (read "The Hard Way" below for an example).  Caveat emptor.
+#
+# The Hard Way
+# ------------
+#
+# Use the source code.  This is trickier because the full set of required parameters can only be determined
+# by combining information from multiple places.  It's best explained using an example:
+#
+# Let's say I want to make a call to the author method of the retrieve class, to retrieve references by a specific
+# author.  By looking at the API documentation, I can determine that the full set of parameters for this call is
+# class, method, search, folder (optional), pgnum, pgsize, sort (optional), style (optional), language (optional),
+# format (optional) and biblist (optional).
+#
+# This can also be determined by source code examination.  You'll need to look at both RetrieveRequest and
+# RetrieveAuthorRequest.
+#
+# Looking at RetrieveRequest's generate_class_params, you'll see quite a few of these parameters are common to all
+# Retrieve calls and therefore are captured here.  This includes class, pgsize, pgnum, format, sort, style, language
+# and biblist.  Defaults have been provided when possible, and are the same as the ones defined by the API spec.  NOTE:
+# Here you can also see where the client deviates from the spec.  For example, you can see that the style parameter is
+# simply hard-coded to 0, and any value passed-in will be ignored.
+#
+# We still have not accounted for method, search or folder.  Looking at RetrieveAuthorRequest's generate_request_info,
+# we find the three remaining parameters.  These are defined here because search and folder are not common to all
+# Retrieve requests, and of course the value for method is going to be unique to each method.
+
+# API method call cheat sheet below.  There's probably not 100% coverage, but here's most of 'em.
 
 #response = rwc.request(:class_name => 'retrieve',
 #                       :method_name => 'quick',
@@ -26,6 +80,8 @@ rwc = Refworks.new(RefWorks::Config::CONFIG)
 #                       :method_name => 'all',
 #                       :method_params => {},
 #)
+
+response = rwc.request('retrieve', 'author', {:search => "Rhode,Paul W.", :folder => 'testfolder'})
 
 #response = rwc.request(:class_name => 'retrieve',
 #                       :method_name => 'periodical',
@@ -226,10 +282,7 @@ rwc = Refworks.new(RefWorks::Config::CONFIG)
 #                       :method_params => {},
 #)
 
-response = rwc.request(:class_name => 'savedsearch',
-                       :method_name => 'get',
-                       :method_params => {:saved => 'fransearch'},
-)
+#response = rwc.request('savedsearch', 'get', {:saved => 'fransearch'})
 
 if response.result_code == "200"
   #pp "Received " + response.total_hits + " hits, " + response.total_returned + " of which were returned."
@@ -239,8 +292,8 @@ if response.result_code == "200"
   #pp response.sortlocales
   #pp response.sourcetypes
   #pp response.typelabels
-  #pp response.references
-  pp response.savedsearches
+  pp response.references
+  #pp response.savedsearches
 else
   #pp references
   pp response.result_code.class

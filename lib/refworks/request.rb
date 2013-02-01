@@ -1,14 +1,25 @@
 
-
+# The base abstract Request class.  Universal request logic is captured here.
+# @abstract
+# @api private
 class Request
   require 'rubygems'
   require 'base64'
   require 'openssl'
 
+  # Returns the verb which should be used to request a particular API method.  Since most of the API
+  # is based on GET requests, we define that as the default behavior here and override in
+  # subclasses where necessary.
+  # @return [String] The string 'GET'
   def self.http_request_verb
     'GET'
   end
 
+  # Generates a signature for the API call per the Refworks API signature specification.
+  # @param [String] call_class The name of the class being called.
+  # @param [String] access_key The user's access key.
+  # @param [String] secret_key The user's secret key.
+  # @return [String] A Refworks signature.
   def self.generate_signature(call_class, access_key, secret_key)
 
     # Construct the RW-required signature using the algorithm from their docs

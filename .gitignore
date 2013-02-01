@@ -12,7 +12,7 @@ spec/reports
 test/tmp
 test/version_tmp
 tmp
-utilities/config/config.rb
+examples/config/config.rb
 Gemfile.lock
 
 # YARD artifacts
