@@ -144,6 +144,85 @@ class Reference
     @md = ref[:md]
   end
 
+  # method to produce RefWorks XML format
+  def to_refworks_xml
+    @xml = "<reference>"
+
+    @xml << "<rt>#{rt_string}</rt>" if @rt
+    @xml << "<sr>#{sr}</sr>" if @sr
+    @xml << "<id>#{id}</id>" if @id
+    a1.each {|a| @xml << "<a1>#{a}</a1>"} if @a1
+    @xml << "<t1>#{t1}</t1>" if @t1
+    @xml << "<jf>#{jf}</jf>" if @jf
+    @xml << "<jo>#{jo}</jo>" if @jo
+    @xml << "<yr>#{yr}</yr>" if @yr
+    @xml << "<fd>#{fd}</fd>" if @fd
+    @xml << "<vo>#{vo}</vo>" if @vo
+    @xml << "<is>#{is}</is>" if @is
+    @xml << "<sp>#{sp}</sp>" if @sp
+    @xml << "<op>#{op}</op>" if @op
+    k1.each {|k| @xml << "<k1>#{k1}</k1>"} if @k1
+    @xml << "<ab>#{ab}</ab>" if @ab
+    @xml << "<no>#{no}</no>" if @no
+    a2.each {|a| @xml << "<a2>#{a}</a2>"} if @a2
+    @xml << "<t2>#{t2}</t2>" if @t2
+    @xml << "<ed>#{ed}</ed>" if @ed
+    @xml << "<pb>#{pb}</pb>" if @pb
+    @xml << "<pp>#{pp}</pp>" if @pp
+    a3.each {|a| @xml << "<a3>#{a}</a3>"} if @a3
+    a4.each {|a| @xml << "<a4>#{a}</a4>"} if @a4
+    a5.each {|a| @xml << "<a5>#{a}</a5>"} if @a5
+    @xml << "<t3>#{t3}</t3>" if @t3
+    @xml << "<sn>#{sn}</sn>" if @sn
+    @xml << "<av>#{av}</av>" if @av
+    @xml << "<ad>#{ad}</ad>" if @ad
+    @xml << "<an>#{an}</an>" if @an
+    @xml << "<la>#{la}</la>" if @la
+    @xml << "<cl>#{cl}</cl>" if @cl
+    @xml << "<sf>#{sf}</sf>" if @sf
+    @xml << "<ot>#{ot}</ot>" if @ot
+    @xml << "<lk>#{lk}</lk>" if @lk
+    @xml << "<do>#{@do}</do>" if @do
+    @xml << "<cn>#{cn}</cn>" if @cn
+    @xml << "<db>#{db}</db>" if @db
+    @xml << "<ds>#{ds}</ds>" if @ds
+    @xml << "<ip>#{ip}</ip>" if @ip
+    @xml << "<rd>#{rd}</rd>" if @rd
+    @xml << "<st>#{st}</st>" if @st
+    @xml << "<u1>#{u1}</u1>" if @u1
+    @xml << "<u2>#{u2}</u2>" if @u2
+    @xml << "<u3>#{u3}</u3>" if @u3
+    @xml << "<u4>#{u4}</u4>" if @u4
+    @xml << "<u5>#{u5}</u5>" if @u5
+    @xml << "<u6>#{u6}</u6>" if @u6
+    @xml << "<u7>#{u7}</u7>" if @u7
+    @xml << "<u8>#{u8}</u8>" if @u8
+    @xml << "<u9>#{u9}</u9>" if @u9
+    @xml << "<u10>#{u10}</u10>" if @u10
+    @xml << "<u11>#{u11}</u11>" if @u11
+    @xml << "<u12>#{u12}</u12>" if @u12
+    @xml << "<u13>#{u13}</u13>" if @u13
+    @xml << "<u14>#{u14}</u14>" if @u14
+    @xml << "<u15>#{u15}</u15>" if @u15
+    @xml << "<ul>#{ul}</ul>" if @ul
+    @xml << "<sl>#{sl}</sl>" if @sl
+    @xml << "<ll>#{ll}</ll>" if @ll
+    @xml << "<cr>#{cr}</cr>" if @cr
+    @xml << "<wt>#{wt}</wt>" if @wt
+    a6.each {|a| @xml << "<a6>#{a}</a6>"} if @a6
+    @xml << "<wv>#{wv}</wv>" if @wv
+    @xml << "<wp>#{wp}</wp>" if @wp
+    @xml << "<ol>#{ol}</ol>" if @ol
+    @xml << "<pmid>#{pmid}</pmid>" if @pmid
+    @xml << "<pmcid>#{pmcid}</pmcid>" if @pmcid
+    @xml << "<fl>#{fl}</fl>" if @fl
+    @xml << "<cd>#{cd}</cd>" if @cd
+    @xml << "<md>#{md}</md>" if @md
+
+    @xml << "</reference>"
+    @xml
+  end
+
   # setup human-readable aliases as accessors
   # I've been consistent with the RefWorks tagged format legend (see end of this file)
   # plus I added some additional ones (like "authors" as a synonym for "primary_authors")
