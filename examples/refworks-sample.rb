@@ -304,6 +304,8 @@ else
   pp response.result_msg
 end
 
+response.references.each { |ref| puts ref.to_refworks_xml}
+
 #pp response.body
 #pp response.parsed_response
 
