@@ -1,5 +1,5 @@
-$LOAD_PATH << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/..')
-require File.expand_path('lib/refworks.rb')
+$LOAD_PATH << File.expand_path(File.dirname(__FILE__) + '/..')
+require 'lib/refworks.rb'
 require 'examples/config/config.rb'
 
 rwc = Refworks.new(RefworksConfig::CONFIG)
@@ -65,16 +65,20 @@ rwc = Refworks.new(RefworksConfig::CONFIG)
 #                       }
 #)
 
-#response = rwc.request(:class_name => 'retrieve',
-#                       :method_name => 'advancesearch',
-#                       :method_params => {
-#                         :parameter_list => [
-#                             {:field => "ALLAU", :search => "Henderson"},
-#                             {:connector => "and", :search => "economic"},
-#                          ],
-#                         :classic => 'true',
-#                       }
-#)
+
+response = rwc.request(
+    'retrieve',
+    'advancesearch',
+    {
+        :parameter_list => [
+            {field: "ALLAU", search: "Smith"},
+            {connector: 'and', field: "T1", search: "Education"}
+        ],
+        :classic => 'true',
+        :pgnum => 1,
+        :pgsize => 20
+    }
+)
 
 #response = rwc.request(:class_name => 'retrieve',
 #                       :method_name => 'all',
