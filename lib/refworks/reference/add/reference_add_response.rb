@@ -1,2 +1,3 @@
-class ReferenceAddResponse
+class ReferenceAddResponse < ReferenceResponse
+
 end

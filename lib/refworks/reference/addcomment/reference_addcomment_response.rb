@@ -1,0 +1,2 @@
+class ReferenceAddcommentResponse < ReferenceResponse
+end

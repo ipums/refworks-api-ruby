@@ -1,0 +1,2 @@
+class ReferenceDeleteResponse < ReferenceResponse
+end

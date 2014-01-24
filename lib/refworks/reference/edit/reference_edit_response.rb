@@ -1,0 +1,3 @@
+class ReferenceEditResponse < ReferenceResponse
+
+end

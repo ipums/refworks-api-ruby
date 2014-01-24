@@ -29,7 +29,7 @@ Authentication
   - newrefsharesess not implemented.
 
 Authors,Descriptors,Periodicals,Folders
-  - all and search are implemented.
+  - all, search are implemented.
   - addref (GET), addref (POST), clear, create, delete, edit, removeref (GET), removeref (POST) are not implemented.
   - note that in the code, these are broken out into four different classes.
 
@@ -60,12 +60,12 @@ PubMed
   - Nothing implemented.
 
 Reference
-  - get implemented.
-  - add, addcomment, delete (GET), delete (POST), deletecomment, edit, editcomment, globaledit, import,
+  - get, add, addcomment, delete (GET), edit implemented.
+  - delete (POST), deletecomment, editcomment, globaledit, import,
     importendnote, importpreview, openurl not implemented.
 
 Retrieve
-  - advancesearch, all, author, byid, count, descriptor, dup, folder, modsince, nofolder, periodical, quick,
+  - advancesearch, all, author, byid (GET), count, descriptor, dup, folder, modsince, nofolder, periodical, quick,
     saved, specialfolder implemented.
   - byid (POST), openurl not implemented.
 

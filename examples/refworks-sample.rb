@@ -81,7 +81,7 @@ rwc = Refworks.new(RefworksConfig::CONFIG)
 #                       :method_params => {},
 #)
 
-response = rwc.request('retrieve', 'author', {:search => "Rhode,Paul W.", :folder => 'testfolder'})
+#response = rwc.request('retrieve', 'author', {:search => "Rhode,Paul W.", :folder => 'testfolder'})
 
 #response = rwc.request(:class_name => 'retrieve',
 #                       :method_name => 'periodical',
@@ -98,9 +98,8 @@ response = rwc.request('retrieve', 'author', {:search => "Rhode,Paul W.", :folde
 #                       :method_params => {:search => 'close'},
 #)
 
-#response = rwc.request(:class_name => 'retrieve',
-#                       :method_name => 'folder',
-#                       :method_params => {:search => 'testfolder'},
+#response = rwc.request('retrieve', 'folder',
+#                       :method_params => {:search => 'Pending'},
 #)
 
 #response = rwc.request(:class_name => 'retrieve',
@@ -201,11 +200,13 @@ response = rwc.request('retrieve', 'author', {:search => "Rhode,Paul W.", :folde
 #                       :method_params => {:includedb => 'false', :search => 'MED'},
 #)
 
-#response = rwc.request(:class_name => 'manuscript',
-#                       :method_name => 'baseurl',
-#                       :method_params => {:methodname => 'text',},
+#response = rwc.request('manuscript',
+#                       'baseurl',
+#                       {:methodname => 'text',},
 #)
+
 #manuscript_baseurl = response.baseurl
+#pp "BASE URL IS " + response.baseurl
 
 #response = rwc.request(:class_name => 'manuscript',
 #                       :method_name => 'all',
@@ -214,10 +215,9 @@ response = rwc.request('retrieve', 'author', {:search => "Rhode,Paul W.", :folde
 #    },
 #)
 
-#response = rwc.request(:class_name => 'manuscript',
-#                       :method_name => 'byid',
-#                       :base_url => manuscript_baseurl,
-#                       :method_params => {:id => 1, :ids => [1,2,3], :fileformat => 'text',
+#response = rwc.request('manuscript',
+#                       'byid',
+#                       {:base_url => "http://as.refworks.com/accessrw/", :id => 1, :ids => [41500], :fileformat => 'text',
 #                       },
 #)
 
@@ -284,6 +284,29 @@ response = rwc.request('retrieve', 'author', {:search => "Rhode,Paul W.", :folde
 
 #response = rwc.request('savedsearch', 'get', {:saved => 'fransearch'})
 
+#response = rwc.request('retrieve', 'folder',
+#                       {:search => 'TestData'},
+#)
+#refs = response.references
+#response = rwc.request('reference','add',{:references => refs, :folder => 'Pending', :returnrefs => '1'})
+
+#response = rwc.request('reference','addcomment',{:id => 46868, :comments => [{:title => "New Comment", :name => "Joe User", :inetinfo => "www.cnn.com", :comment => "This is a sample comment."}]})
+
+#response = rwc.request('reference','delete',{:ids => [46868,46869]})
+
+response = rwc.request('retrieve', 'folder', {:search => 'Pending'},
+)
+refs = response.references
+refs.each { |ref|
+  title = ref.t1
+  title << " - EDITING"
+  ref.t1 = title
+}
+response = rwc.request('reference','edit',{:references => refs})
+
+#response = rwc.request('reference','addcomment',{:id => 46868, :comments => [{:title => "New Comment", :name => "Joe User", :inetinfo => "www.cnn.com", :comment => "This is a sample comment."}]})
+
+
 if response.result_code == "200"
   #pp "Received " + response.total_hits + " hits, " + response.total_returned + " of which were returned."
   #pp response.filetoken
@@ -292,16 +315,16 @@ if response.result_code == "200"
   #pp response.sortlocales
   #pp response.sourcetypes
   #pp response.typelabels
-  pp response.references
+  #pp response.references
   #pp response.savedsearches
 else
-  #pp references
-  pp response.result_code.class
-  pp response.result_msg
+#  pp references
+#  pp response.result_code.class
+#  pp response.result_msg
 end
 
-response.references.each { |ref| puts ref.to_refworks_xml}
+#response.references.each { |ref| puts ref.to_refworks_xml}
 
 #pp response.body
-#pp response.parsed_response
+pp response.parsed_response
 

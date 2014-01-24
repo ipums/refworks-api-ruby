@@ -3,7 +3,7 @@ require "mash"
 
 #noinspection RubyTooManyInstanceVariablesInspection,RubyTooManyMethodsInspection
 class Reference
-  attr_reader :rt, :rt_num, :rt_string, :sr, :id, :a1, :t1, :jf, :jo, :yr, :fd,
+  attr_accessor :rt, :rt_num, :rt_string, :sr, :id, :a1, :t1, :jf, :jo, :yr, :fd,
               :vo, :is, :sp, :op, :k1, :ab, :no, :a2, :t2, :ed, :pb, :pp, :a3,
               :a4, :a5, :t3, :sn, :av, :ad, :an, :la, :cl, :sf, :ot, :lk, :do,
               :cn, :db, :ds, :ip, :rd, :st, :u1, :u2, :u3, :u4, :u5, :u6, :u7,
@@ -215,9 +215,10 @@ class Reference
     @xml << "<ol>#{ol}</ol>" if @ol
     @xml << "<pmid>#{pmid}</pmid>" if @pmid
     @xml << "<pmcid>#{pmcid}</pmcid>" if @pmcid
-    @xml << "<fl>#{fl}</fl>" if @fl
-    @xml << "<cd>#{cd}</cd>" if @cd
-    @xml << "<md>#{md}</md>" if @md
+    # suppressing these - they are not part of the spec and RW trips if you try to add a ref with these
+    #@xml << "<fl>#{fl}</fl>" if @fl
+    #@xml << "<cd>#{cd}</cd>" if @cd
+    #@xml << "<md>#{md}</md>" if @md
 
     @xml << "</reference>"
     @xml
