@@ -233,6 +233,10 @@ class Reference
     rt
   end
 
+  def reference_type=(val)
+    rt = val
+  end
+
   # extension
   def reference_type_num
     rt_num
@@ -247,8 +251,16 @@ class Reference
     sr
   end
 
+  def source_type=(val)
+    sr = val
+  end
+
   def primary_authors
     a1
+  end
+
+  def primary_authors=(val)
+    a1 = val
   end
 
   # alias
@@ -256,8 +268,17 @@ class Reference
     a1
   end
 
+  # alias
+  def authors=(val)
+    a1 = val
+  end
+
   def primary_title
     t1
+  end
+
+  def primary_title=(val)
+    t1 = val
   end
 
   # alias
@@ -265,129 +286,258 @@ class Reference
     t1
   end
 
+  def title=(val)
+    t1=val
+  end
+
   def periodical_full
     jf
+  end
+
+  def periodical_full=(val)
+    jf=val
   end
 
   def periodical_abbrev
     jo
   end
 
+  def periodical_abbrev=(val)
+    jo=val
+  end
+
   def publication_year
     yr
+  end
+
+  def publication_year=(val)
+    yr=val
   end
 
   def publication_data_free_form
     fd
   end
 
+  def publication_data_free_form=(val)
+    fd=val
+  end
+
   def volume
     vo
+  end
+
+  def volume=(val)
+    vo=val
   end
 
   def issue
     is
   end
 
+  def issue=(val)
+    is=val
+  end
+
   def start_page
     sp
+  end
+
+  def start_page=(val)
+    sp=val
   end
 
   def other_pages
     op
   end
 
+  def other_pages=(val)
+    op=val
+  end
+
   def keyword
     k1
+  end
+
+  def keyword=(val)
+    k1=val
   end
 
   def keywords
     k1
   end
 
+  def keywords=(val)
+    k1=val
+  end
+
   def abstract
     ab
+  end
+
+  def abstract=(val)
+    ab=val
   end
 
   def notes
     no
   end
 
+  def notes=(val)
+    no=val
+  end
+
   def secondary_authors
     a2
+  end
+
+  def secondary_authors=(val)
+    a2=val
   end
 
   def secondary_title
     t2
   end
 
+  def secondary_title=(val)
+    t2=val
+  end
+
   def edition
     ed
+  end
+
+  def edition=(val)
+    ed=val
   end
 
   def publisher
     pb
   end
 
+  def publisher=(val)
+    pb=val
+  end
+
   def place_of_publication
     pp
+  end
+
+  def place_of_publication=(val)
+    pp=val
   end
 
   def tertiary_authors
     a3
   end
 
+  def tertiary_authors=(val)
+    a3=val
+  end
+
   def quaternary_authors
     a4
+  end
+
+  def quaternary_authors=(val)
+    a4=val
   end
 
   def quinary_authors
     a5
   end
 
+  def quinary_authors=(val)
+    a5=val
+  end
+
   def tertiary_title
     t3
+  end
+
+  def tertiary_title=(val)
+    t3=val
   end
 
   def issn_isbn
     sn
   end
 
+  def issn_isbn=(val)
+    sn=val
+  end
+
   def availability
     av
+  end
+
+  def availability=(val)
+    av=val
   end
 
   def author_address
     ad
   end
 
+  def author_address=(val)
+    ad=val
+  end
+
   def accession_number
     an
+  end
+
+  def accession_number=(val)
+    an=val
   end
 
   def language
     la
   end
 
+  def language=(val)
+    la=val
+  end
+
   def classification
     cl
+  end
+
+  def classification=(val)
+    cl=val
   end
 
   def subfile_database
     sf
   end
 
+  def subfile_database=(val)
+    sf=val
+  end
+
   def original_foreign_title
     ot
+  end
+
+  def original_foreign_title=(val)
+    ot=val
   end
 
   def links
     lk
   end
 
+  def links=(val)
+    lk=val
+  end
+
   def digital_object_identifier
     # @ sign to avoid collision with Ruby keyword 'do'
     @do
+  end
+
+  def digital_object_identifier=(val)
+    # @ sign to avoid collision with Ruby keyword 'do'
+    @do=val
   end
 
   # alias
@@ -396,124 +546,250 @@ class Reference
     @do
   end
 
+  # alias
+  def doi=(val)
+    # @ sign to avoid collision with Ruby keyword 'do'
+    @do=val
+  end
+
   def call_number
     cn
+  end
+
+  def call_number=(val)
+    cn=val
   end
 
   def database
     db
   end
 
+  def database=(val)
+    db=val
+  end
+
   def data_source
     ds
+  end
+
+  def data_source=(val)
+    ds=val
   end
 
   def identifying_phrase
     ip
   end
 
+  def identifying_phrase=(val)
+    ip=val
+  end
+
   def retrieved_date
     rd
+  end
+
+  def retrieved_date=(val)
+    rd=val
   end
 
   def shortened_title
     st
   end
 
+  def shortened_title=(val)
+    st=val
+  end
+
   def user_1
     u1
+  end
+
+  def user_1=(val)
+    u1=val
   end
 
   def user_2
     u2
   end
 
+  def user_2=(val)
+    u2=val
+  end
+
   def user_3
     u3
+  end
+
+  def user_3=(val)
+    u3=val
   end
 
   def user_4
     u4
   end
 
+  def user_4=(val)
+    u4=val
+  end
+
   def user_5
     u5
+  end
+
+  def user_5=(val)
+    u5=val
   end
 
   def user_6
     u6
   end
 
+  def user_6=(val)
+    u6=val
+  end
+
   def user_7
     u7
+  end
+
+  def user_7=(val)
+    u7=val
   end
 
   def user_8
     u8
   end
 
+  def user_8=(val)
+    u8=val
+  end
+
   def user_9
     u9
+  end
+
+  def user_9=(val)
+    u9=val
   end
 
   def user_10
     u10
   end
 
+  def user_10=(val)
+    u10=val
+  end
+
   def user_11
     u11
+  end
+
+  def user_11=(val)
+    u11=val
   end
 
   def user_12
     u12
   end
 
+  def user_12=(val)
+    u12=val
+  end
+
   def user_13
     u13
+  end
+
+  def user_13=(val)
+    u13=val
   end
 
   def user_14
     u14
   end
 
+  def user_14=(val)
+    u14=val
+  end
+
   def user_15
     u15
+  end
+
+  def user_15=(val)
+    u15=val
   end
 
   def url
     ul
   end
 
+  def url=(val)
+    ul=val
+  end
+
   def sponsoring_library
     sl
+  end
+
+  def sponsoring_library=(val)
+    sl=val
   end
 
   def sponsoring_library_location
     ll
   end
 
+  def sponsoring_library_location=(val)
+    ll=val
+  end
+
   def cited_references
     cr
+  end
+
+  def cited_references=(val)
+    cr=val
   end
 
   def website_title
     wt
   end
 
+  def website_title=(val)
+    wt=val
+  end
+
   def website_editors
     a6
+  end
+
+  def website_editors=(val)
+    a6=val
   end
 
   def website_version
     wv
   end
 
+  def website_version=(val)
+    wv=val
+  end
+
   def date_of_electronic_publication
     wp
   end
 
+  def date_of_electronic_publication=(val)
+    wp=val
+  end
+
   def output_language
     ol
+  end
+
+  def output_language=(val)
+    ol=val
   end
 
   # extension

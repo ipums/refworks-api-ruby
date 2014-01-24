@@ -302,9 +302,9 @@ response = rwc.request('retrieve', 'folder', {:search => 'Pending'},
 )
 refs = response.references
 refs.each { |ref|
-  title = ref.t1
+  title = ref.title
   title << " - EDITING"
-  ref.t1 = title
+  ref.title = title
 }
 response = rwc.request('reference','edit',{:references => refs})
 
