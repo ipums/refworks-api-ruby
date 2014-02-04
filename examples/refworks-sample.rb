@@ -57,14 +57,10 @@ rwc = Refworks.new(RefworksConfig::CONFIG)
 # Retrieve requests, and of course the value for method is going to be unique to each method.
 
 # API method call cheat sheet below.  There's probably not 100% coverage, but here's most of 'em.
+# Format for a call is to call the client's request() method with the class name as the first param, the method name
+# as the second param, and a hash containing the rest of the method params as the third parameter.
 
-#response = rwc.request(:class_name => 'retrieve',
-#                       :method_name => 'quick',
-#                       :method_params => {
-#                         :search => "Jones",
-#                       }
-#)
-
+#response = rwc.request('retrieve','quick', {:search => "Jones"})
 
 response = rwc.request(
     'retrieve',
@@ -80,128 +76,128 @@ response = rwc.request(
     }
 )
 
-#response = rwc.request(:class_name => 'retrieve',
-#                       :method_name => 'all',
-#                       :method_params => {},
+#response = rwc.request('retrieve',
+#                       'all',
+#                       {},
 #)
 
 #response = rwc.request('retrieve', 'author', {:search => "Rhode,Paul W.", :folder => 'testfolder'})
 
-#response = rwc.request(:class_name => 'retrieve',
-#                       :method_name => 'periodical',
-#                       :method_params => {:search => "Family and Marriage"},
+#response = rwc.request('retrieve',
+#                       'periodical',
+#                       {:search => "Family and Marriage"},
 #)
 
-#response = rwc.request(:class_name => 'retrieve',
-#                       :method_name => 'byid',
-#                       :method_params => {:id => [42154, 42160, 42400]},
+#response = rwc.request('retrieve',
+#                       'byid',
+#                       {:id => [42154, 42160, 42400]},
 #)
 
-#response = rwc.request(:class_name => 'retrieve',
-#                       :method_name => 'dup',
-#                       :method_params => {:search => 'close'},
+#response = rwc.request('retrieve',
+#                       'dup',
+#                       {:search => 'close'},
 #)
 
 #response = rwc.request('retrieve', 'folder',
-#                       :method_params => {:search => 'Pending'},
+#                       {:search => 'Pending'},
 #)
 
-#response = rwc.request(:class_name => 'retrieve',
-#                       :method_name => 'modsince',
-#                       :method_params => {:search => '999999999999'},
+#response = rwc.request('retrieve',
+#                       'modsince',
+#                       {:search => '999999999999'},
 #)
 
-#response = rwc.request(:class_name => 'retrieve',
-#                       :method_name => 'nofolder',
-#                       :method_params => {},
+#response = rwc.request('retrieve',
+#                       'nofolder',
+#                       {},
 #)
 
-#response = rwc.request(:class_name => 'retrieve',
-#                       :method_name => 'saved',
-#                       :method_params => {:saved => 'fransearch', :classic => 'true'},
+#response = rwc.request('retrieve',
+#                       'saved',
+#                       {:saved => 'fransearch', :classic => 'true'},
 #)
 
-#response = rwc.request(:class_name => 'retrieve',
-#                       :method_name => 'specialfolder',
-#                       :method_params => {:search => 'deleted'},
+#response = rwc.request('retrieve',
+#                       'specialfolder',
+#                       {:search => 'deleted'},
 #)
 
-#response = rwc.request(:class_name => 'authentication',
-#                   :method_name => 'userexists',
-#                   :method_params => {
+#response = rwc.request('authentication',
+#                   'userexists',
+#                   {
 #                       :login_name => "nouser",
 #                       :group_code => rwc.group_code,
 #                       :password => rwc.password,
 #                   }
 #)
 
-#response = rwc.request(:class_name => 'authentication',
-#                       :method_name => 'newtempusersess',
-#                       :method_params => {},
+#response = rwc.request('authentication',
+#                       'newtempusersess',
+#                       {},
 #)
 
-#response = rwc.request(:class_name => 'authors',
-#                       :method_name => 'all',
-#                       :method_params => {},
-#)
-
-
-#response = rwc.request(:class_name => 'authors',
-#                       :method_name => 'search',
-#                       :method_params => {:search => 'Smith'},
+#response = rwc.request('authors',
+#                       'all',
+#                       {},
 #)
 
 
-#response = rwc.request(:class_name => 'descriptors',
-#                       :method_name => 'all',
-#                       :method_params => {},
+#response = rwc.request('authors',
+#                       'search',
+#                       {:search => 'Smith'},
 #)
 
 
-#response = rwc.request(:class_name => 'descriptors',
-#                       :method_name => 'search',
-#                       :method_params => {:search => '%Segregation%'},
+#response = rwc.request('descriptors',
+#                       'all',
+#                       {},
 #)
 
 
-#response = rwc.request(:class_name => 'periodicals',
-#                       :method_name => 'all',
-#                       :method_params => {},
+#response = rwc.request('descriptors',
+#                       'search',
+#                       {:search => '%Segregation%'},
 #)
 
-#response = rwc.request(:class_name => 'periodicals',
-#                       :method_name => 'search',
-#                       :method_params => {:search => 'Am'},
+
+#response = rwc.request('periodicals',
+#                       'all',
+#                       {},
 #)
 
-#response = rwc.request(:class_name => 'folders',
-#                       :method_name => 'all',
-#                       :method_params => {},
+#response = rwc.request('periodicals',
+#                       'search',
+#                       {:search => 'Am'},
 #)
 
-#response = rwc.request(:class_name => 'folders',
-#                       :method_name => 'search',
-#                       :method_params => {:search => 'test'},
+#response = rwc.request('folders',
+#                       'all',
+#                       {},
 #)
 
-#response = rwc.request(:class_name => 'importfilter',
-#                       :method_name => 'allavailable',
-#                       :method_params => {:includedb => 'true'},
+#response = rwc.request('folders',
+#                       'search',
+#                       {:search => 'test'},
 #)
 
-#response = rwc.request(:class_name => 'importfilter',
-#                       :method_name => 'allglobal',
-#                       :method_params => {:includedb => 'true'},
+#response = rwc.request('importfilter',
+#                       'allavailable',
+#                       {:includedb => 'true'},
 #)
 
-#response = rwc.request(:class_name => 'importfilter',
-#                       :method_name => 'favorites',
-#                       :method_params => {:includedb => 'false'},
+#response = rwc.request('importfilter',
+#                       'allglobal',
+#                       {:includedb => 'true'},
 #)
 
-#response = rwc.request(:class_name => 'importfilter',
-#                       :method_name => 'search',
-#                       :method_params => {:includedb => 'false', :search => 'MED'},
+#response = rwc.request('importfilter',
+#                       'favorites',
+#                       {:includedb => 'false'},
+#)
+
+#response = rwc.request('importfilter',
+#                       'search',
+#                       {:includedb => 'false', :search => 'MED'},
 #)
 
 #response = rwc.request('manuscript',
@@ -212,10 +208,10 @@ response = rwc.request(
 #manuscript_baseurl = response.baseurl
 #pp "BASE URL IS " + response.baseurl
 
-#response = rwc.request(:class_name => 'manuscript',
-#                       :method_name => 'all',
+#response = rwc.request('manuscript',
+#                       'all',
 #                       :base_url => manuscript_baseurl,
-#                       :method_params => {:id => 1, :fileformat => 'text', :maxrefs => 3,
+#                       {:id => 1, :fileformat => 'text', :maxrefs => 3,
 #    },
 #)
 
@@ -225,65 +221,65 @@ response = rwc.request(
 #                       },
 #)
 
-#response = rwc.request(:class_name => 'manuscript',
-#                       :method_name => 'mylist',
+#response = rwc.request('manuscript',
+#                       'mylist',
 #                       :base_url => manuscript_baseurl,
-#                       :method_params => {:id => 1, :folder => 'testfolder', :fileformat => 'word',
+#                       {:id => 1, :folder => 'testfolder', :fileformat => 'word',
 #                       },
 #)
 #filetoken = response.filetoken
 
-#response = rwc.request(:class_name => 'manuscript',
-#                       :method_name => 'file',
+#response = rwc.request('manuscript',
+#                       'file',
 #                       :base_url => manuscript_baseurl,
-#                       :method_params => {:filetoken => filetoken,
+#                       {:filetoken => filetoken,
 #                       },
 #)
 
-#response = rwc.request(:class_name => 'properties',
-#                       :method_name => 'encoding',
-#                       :method_params => {},
+#response = rwc.request('properties',
+#                       'encoding',
+#                       {},
 #)
 
-#response = rwc.request(:class_name => 'properties',
-#                       :method_name => 'fieldlabels',
-#                       :method_params => {},
+#response = rwc.request('properties',
+#                       'fieldlabels',
+#                       {},
 #)
 
-#response = rwc.request(:class_name => 'properties',
-#                       :method_name => 'sourcetypes',
-#                       :method_params => {},
+#response = rwc.request('properties',
+#                       'sourcetypes',
+#                       {},
 #)
 
-#response = rwc.request(:class_name => 'properties',
-#                       :method_name => 'typelabels',
-#                       :method_params => {},
+#response = rwc.request('properties',
+#                       'typelabels',
+#                       {},
 #)
 
-#response = rwc.request(:class_name => 'properties',
-#                       :method_name => 'languages',
-#                       :method_params => {},
+#response = rwc.request('properties',
+#                       'languages',
+#                       {},
 #)
 
-#response = rwc.request(:class_name => 'properties',
-#                       :method_name => 'outputlanguage',
-#                       :method_params => {},
+#response = rwc.request('properties',
+#                       'outputlanguage',
+#                       {},
 #)
 
-#response = rwc.request(:class_name => 'properties',
-#                       :method_name => 'sortlocales',
-#                       :method_params => {},
+#response = rwc.request('properties',
+#                       'sortlocales',
+#                       {},
 #)
 
-#response = rwc.request(:class_name => 'reference',
-#                       :method_name => 'get',
-#                       :method_params => {:id => [46400]},
+#response = rwc.request('reference',
+#                       'get',
+#                       {:id => [46400]},
 #)
 
 
-#response = rwc.request(:class_name => 'savedsearch',
-#                       :method_name => 'all',
-#                       :method_params => {},
+#response = rwc.request('savedsearch',
+#                       'all',
+#                       {},
 #)
 
 #response = rwc.request('savedsearch', 'get', {:saved => 'fransearch'})
@@ -302,9 +298,7 @@ response = rwc.request('retrieve', 'folder', {:search => 'Pending'},
 )
 refs = response.references
 refs.each { |ref|
-  title = ref.title
-  title << " - EDITING"
-  ref.title = title
+  ref.fl = "TestData"
 }
 response = rwc.request('reference','edit',{:references => refs})
 
