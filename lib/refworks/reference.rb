@@ -234,7 +234,7 @@ class Reference
   end
 
   def reference_type=(val)
-    rt = val
+    self.rt = val
   end
 
   # extension
@@ -252,7 +252,7 @@ class Reference
   end
 
   def source_type=(val)
-    sr = val
+    self.sr = val
   end
 
   def primary_authors
@@ -260,7 +260,7 @@ class Reference
   end
 
   def primary_authors=(val)
-    a1 = val
+    self.a1 = val
   end
 
   # alias
@@ -270,7 +270,7 @@ class Reference
 
   # alias
   def authors=(val)
-    a1 = val
+    self.a1 = val
   end
 
   def primary_title
@@ -278,7 +278,7 @@ class Reference
   end
 
   def primary_title=(val)
-    t1 = val
+    self.t1 = val
   end
 
   # alias
@@ -287,7 +287,7 @@ class Reference
   end
 
   def title=(val)
-    t1=val
+    self.t1=val
   end
 
   def periodical_full
@@ -295,7 +295,7 @@ class Reference
   end
 
   def periodical_full=(val)
-    jf=val
+    self.jf=val
   end
 
   def periodical_abbrev
@@ -303,7 +303,7 @@ class Reference
   end
 
   def periodical_abbrev=(val)
-    jo=val
+    self.jo=val
   end
 
   def publication_year
@@ -311,7 +311,7 @@ class Reference
   end
 
   def publication_year=(val)
-    yr=val
+    self.yr=val
   end
 
   def publication_data_free_form
@@ -319,7 +319,7 @@ class Reference
   end
 
   def publication_data_free_form=(val)
-    fd=val
+    self.fd=val
   end
 
   def volume
@@ -327,7 +327,7 @@ class Reference
   end
 
   def volume=(val)
-    vo=val
+    self.vo=val
   end
 
   def issue
@@ -335,7 +335,7 @@ class Reference
   end
 
   def issue=(val)
-    is=val
+    self.is=val
   end
 
   def start_page
@@ -343,7 +343,7 @@ class Reference
   end
 
   def start_page=(val)
-    sp=val
+    self.sp=val
   end
 
   def other_pages
@@ -351,7 +351,7 @@ class Reference
   end
 
   def other_pages=(val)
-    op=val
+    self.op=val
   end
 
   def keyword
@@ -359,7 +359,7 @@ class Reference
   end
 
   def keyword=(val)
-    k1=val
+    self.k1=val
   end
 
   def keywords
@@ -367,7 +367,7 @@ class Reference
   end
 
   def keywords=(val)
-    k1=val
+    self.k1=val
   end
 
   def abstract
@@ -375,7 +375,7 @@ class Reference
   end
 
   def abstract=(val)
-    ab=val
+    self.ab=val
   end
 
   def notes
@@ -383,7 +383,7 @@ class Reference
   end
 
   def notes=(val)
-    no=val
+    self.no=val
   end
 
   def secondary_authors
@@ -391,7 +391,7 @@ class Reference
   end
 
   def secondary_authors=(val)
-    a2=val
+    self.a2=val
   end
 
   def secondary_title
@@ -399,7 +399,7 @@ class Reference
   end
 
   def secondary_title=(val)
-    t2=val
+    self.t2=val
   end
 
   def edition
@@ -407,7 +407,7 @@ class Reference
   end
 
   def edition=(val)
-    ed=val
+    self.ed=val
   end
 
   def publisher
@@ -415,7 +415,7 @@ class Reference
   end
 
   def publisher=(val)
-    pb=val
+    self.pb=val
   end
 
   def place_of_publication
@@ -423,7 +423,7 @@ class Reference
   end
 
   def place_of_publication=(val)
-    pp=val
+    self.pp=val
   end
 
   def tertiary_authors
@@ -431,7 +431,7 @@ class Reference
   end
 
   def tertiary_authors=(val)
-    a3=val
+    self.a3=val
   end
 
   def quaternary_authors
@@ -439,7 +439,7 @@ class Reference
   end
 
   def quaternary_authors=(val)
-    a4=val
+    self.a4=val
   end
 
   def quinary_authors
@@ -447,7 +447,7 @@ class Reference
   end
 
   def quinary_authors=(val)
-    a5=val
+    self.a5=val
   end
 
   def tertiary_title
@@ -455,7 +455,7 @@ class Reference
   end
 
   def tertiary_title=(val)
-    t3=val
+    self.t3=val
   end
 
   def issn_isbn
@@ -463,7 +463,7 @@ class Reference
   end
 
   def issn_isbn=(val)
-    sn=val
+    self.sn=val
   end
 
   def availability
@@ -471,7 +471,7 @@ class Reference
   end
 
   def availability=(val)
-    av=val
+    self.av=val
   end
 
   def author_address
@@ -479,7 +479,7 @@ class Reference
   end
 
   def author_address=(val)
-    ad=val
+    self.ad=val
   end
 
   def accession_number
@@ -487,7 +487,7 @@ class Reference
   end
 
   def accession_number=(val)
-    an=val
+    self.an=val
   end
 
   def language
@@ -495,7 +495,7 @@ class Reference
   end
 
   def language=(val)
-    la=val
+    self.la=val
   end
 
   def classification
@@ -503,7 +503,7 @@ class Reference
   end
 
   def classification=(val)
-    cl=val
+    self.cl=val
   end
 
   def subfile_database
@@ -511,7 +511,7 @@ class Reference
   end
 
   def subfile_database=(val)
-    sf=val
+    self.sf=val
   end
 
   def original_foreign_title
@@ -519,7 +519,7 @@ class Reference
   end
 
   def original_foreign_title=(val)
-    ot=val
+    self.ot=val
   end
 
   def links
@@ -527,7 +527,7 @@ class Reference
   end
 
   def links=(val)
-    lk=val
+    self.lk=val
   end
 
   def digital_object_identifier
@@ -557,7 +557,7 @@ class Reference
   end
 
   def call_number=(val)
-    cn=val
+    self.cn=val
   end
 
   def database
@@ -565,7 +565,7 @@ class Reference
   end
 
   def database=(val)
-    db=val
+    self.db=val
   end
 
   def data_source
@@ -573,7 +573,7 @@ class Reference
   end
 
   def data_source=(val)
-    ds=val
+    self.ds=val
   end
 
   def identifying_phrase
@@ -581,7 +581,7 @@ class Reference
   end
 
   def identifying_phrase=(val)
-    ip=val
+    self.ip=val
   end
 
   def retrieved_date
@@ -589,7 +589,7 @@ class Reference
   end
 
   def retrieved_date=(val)
-    rd=val
+    self.rd=val
   end
 
   def shortened_title
@@ -597,7 +597,7 @@ class Reference
   end
 
   def shortened_title=(val)
-    st=val
+    self.st=val
   end
 
   def user_1
@@ -605,7 +605,7 @@ class Reference
   end
 
   def user_1=(val)
-    u1=val
+    self.u1=val
   end
 
   def user_2
@@ -613,7 +613,7 @@ class Reference
   end
 
   def user_2=(val)
-    u2=val
+    self.u2=val
   end
 
   def user_3
@@ -621,7 +621,7 @@ class Reference
   end
 
   def user_3=(val)
-    u3=val
+    self.u3=val
   end
 
   def user_4
@@ -629,7 +629,7 @@ class Reference
   end
 
   def user_4=(val)
-    u4=val
+    self.u4=val
   end
 
   def user_5
@@ -637,7 +637,7 @@ class Reference
   end
 
   def user_5=(val)
-    u5=val
+    self.u5=val
   end
 
   def user_6
@@ -645,7 +645,7 @@ class Reference
   end
 
   def user_6=(val)
-    u6=val
+    self.u6=val
   end
 
   def user_7
@@ -653,7 +653,7 @@ class Reference
   end
 
   def user_7=(val)
-    u7=val
+    self.u7=val
   end
 
   def user_8
@@ -661,7 +661,7 @@ class Reference
   end
 
   def user_8=(val)
-    u8=val
+    self.u8=val
   end
 
   def user_9
@@ -669,7 +669,7 @@ class Reference
   end
 
   def user_9=(val)
-    u9=val
+    self.u9=val
   end
 
   def user_10
@@ -677,7 +677,7 @@ class Reference
   end
 
   def user_10=(val)
-    u10=val
+    self.u10=val
   end
 
   def user_11
@@ -685,7 +685,7 @@ class Reference
   end
 
   def user_11=(val)
-    u11=val
+    self.u11=val
   end
 
   def user_12
@@ -693,7 +693,7 @@ class Reference
   end
 
   def user_12=(val)
-    u12=val
+    self.u12=val
   end
 
   def user_13
@@ -701,7 +701,7 @@ class Reference
   end
 
   def user_13=(val)
-    u13=val
+    self.u13=val
   end
 
   def user_14
@@ -709,7 +709,7 @@ class Reference
   end
 
   def user_14=(val)
-    u14=val
+    self.u14=val
   end
 
   def user_15
@@ -717,7 +717,7 @@ class Reference
   end
 
   def user_15=(val)
-    u15=val
+    self.u15=val
   end
 
   def url
@@ -725,7 +725,7 @@ class Reference
   end
 
   def url=(val)
-    ul=val
+    self.ul=val
   end
 
   def sponsoring_library
@@ -733,7 +733,7 @@ class Reference
   end
 
   def sponsoring_library=(val)
-    sl=val
+    self.sl=val
   end
 
   def sponsoring_library_location
@@ -741,7 +741,7 @@ class Reference
   end
 
   def sponsoring_library_location=(val)
-    ll=val
+    self.ll=val
   end
 
   def cited_references
@@ -749,7 +749,7 @@ class Reference
   end
 
   def cited_references=(val)
-    cr=val
+    self.cr=val
   end
 
   def website_title
@@ -757,7 +757,7 @@ class Reference
   end
 
   def website_title=(val)
-    wt=val
+    self.wt=val
   end
 
   def website_editors
@@ -765,7 +765,7 @@ class Reference
   end
 
   def website_editors=(val)
-    a6=val
+    self.a6=val
   end
 
   def website_version
@@ -773,7 +773,7 @@ class Reference
   end
 
   def website_version=(val)
-    wv=val
+    self.wv=val
   end
 
   def date_of_electronic_publication
@@ -781,7 +781,7 @@ class Reference
   end
 
   def date_of_electronic_publication=(val)
-    wp=val
+    self.wp=val
   end
 
   def output_language
@@ -789,7 +789,7 @@ class Reference
   end
 
   def output_language=(val)
-    ol=val
+    self.ol=val
   end
 
   # extension
