@@ -18,6 +18,7 @@ class Refworks
   include HTTParty
 
   attr_reader :api_url, :access_key, :secret_key, :login_name, :password, :group_code, :id, :sess
+  attr_writer :sess
 
   # Create a new Refworks client instance.
   # @example
@@ -55,28 +56,32 @@ class Refworks
 
     # probably should check here that I have the minimal set of required attributes to continue
 
-    # Can't do much without a session, so get one now
-    # May need to refactor this - there are parts of the API that don't strictly need a session
-    if (@group_code)
-      response = request('authentication', 'newsess',
-                         {
-                            :login_name => @login_name,
-                            :group_code => @group_code,
-                            :password => @password,
-                         }
-      )
+    # Can't do much without a session, so get one now if one wasn't passed in
+    if params[:sess]
+      @sess = params[:sess]
     else
-      response = request('authentication', 'newsess',
-                         {
-                             :login_name => @login_name,
-                             :id => @id,
-                             :password => @password,
-                         }
-      )
-    end
+      # May need to refactor this - there are parts of the API that don't strictly need a session
+      if (@group_code)
+        response = request('authentication', 'newsess',
+                           {
+                              :login_name => @login_name,
+                              :group_code => @group_code,
+                              :password => @password,
+                           }
+        )
+      else
+        response = request('authentication', 'newsess',
+                           {
+                               :login_name => @login_name,
+                               :id => @id,
+                               :password => @password,
+                           }
+        )
+      end
 
-    # Grab the session string.
-    @sess = response.sess
+      # Grab the session string.
+      @sess = response.sess
+    end
 
     # Need some error checking here
   end

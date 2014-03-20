@@ -58,27 +58,26 @@ rwc = Refworks.new(RefworksConfig::CONFIG)
 
 # API method call cheat sheet below.  There's probably not 100% coverage, but here's most of 'em.
 
-#response = rwc.request(:class_name => 'retrieve',
-#                       :method_name => 'quick',
-#                       :method_params => {
-#                         :search => "Jones",
-#                       }
-#)
+pp rwc.sess
 
-
-response = rwc.request(
-    'retrieve',
-    'advancesearch',
-    {
-        :parameter_list => [
-            {field: "ALLAU", search: "Smith"},
-            {connector: 'and', field: "T1", search: "Education"}
-        ],
-        :classic => 'true',
-        :pgnum => 1,
-        :pgsize => 20
-    }
+response = rwc.request('retrieve', 'quick', {
+                         :search => "Jones",
+                       }
 )
+
+#response = rwc.request(
+#    'retrieve',
+#    'advancesearch',
+#    {
+#        :parameter_list => [
+#            {field: "ALLAU", search: "Smith"},
+#            {connector: 'and', field: "T1", search: "Education"}
+#        ],
+#        :classic => 'true',
+#        :pgnum => 1,
+#        :pgsize => 20
+#    }
+#)
 
 #response = rwc.request(:class_name => 'retrieve',
 #                       :method_name => 'all',
@@ -298,15 +297,15 @@ response = rwc.request(
 
 #response = rwc.request('reference','delete',{:ids => [46868,46869]})
 
-response = rwc.request('retrieve', 'folder', {:search => 'Pending'},
-)
-refs = response.references
-refs.each { |ref|
-  title = ref.title
-  title << " - EDITING"
-  ref.title = title
-}
-response = rwc.request('reference','edit',{:references => refs})
+#response = rwc.request('retrieve', 'folder', {:search => 'Pending'},
+#)
+#refs = response.references
+#refs.each { |ref|
+#  title = ref.title
+#  title << " - EDITING"
+#  ref.title = title
+#}
+#response = rwc.request('reference','edit',{:references => refs})
 
 #response = rwc.request('reference','addcomment',{:id => 46868, :comments => [{:title => "New Comment", :name => "Joe User", :inetinfo => "www.cnn.com", :comment => "This is a sample comment."}]})
 
