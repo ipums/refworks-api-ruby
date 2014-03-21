@@ -57,9 +57,9 @@ class Refworks
     # probably should check here that I have the minimal set of required attributes to continue
 
     # Can't do much without a session, so get one now if one wasn't passed in
-    if params[:sess]
-      @sess = params[:sess]
-    else
+    #if params[:sess]
+    #  @sess = params[:sess]
+    #else
       # May need to refactor this - there are parts of the API that don't strictly need a session
       if (@group_code)
         response = request('authentication', 'newsess',
@@ -81,8 +81,8 @@ class Refworks
 
       # Grab the session string.
       @sess = response.sess
-    end
-
+  #  end
+  #
     # Need some error checking here
   end
 
