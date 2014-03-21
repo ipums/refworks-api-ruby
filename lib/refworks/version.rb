@@ -1,3 +1,3 @@
 class Refworks
-  VERSION = '0.0.10'
+  VERSION = '0.0.12'
 end
