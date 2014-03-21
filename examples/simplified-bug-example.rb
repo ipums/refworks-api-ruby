@@ -1,3 +1,4 @@
+# test script to expose bug
 require 'httparty'
 
 class Refworks
