@@ -1,4 +1,4 @@
-# test script to expose bug in XML response for invalid session.  Testing.
+# test script to expose bug in XML response for invalid session.  Testing again.
 require 'httparty'
 
 class Refworks
