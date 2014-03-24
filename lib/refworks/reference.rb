@@ -192,7 +192,7 @@ class Reference
     @xml << "<is>#{is}</is>" if @is
     @xml << "<sp>#{sp}</sp>" if @sp
     @xml << "<op>#{op}</op>" if @op
-    k1.each {|k| @xml << "<k1>#{k1}</k1>"} if @k1
+    k1.each {|k| @xml << "<k1>#{k}</k1>"} if @k1
     @xml << "<ab>#{ab}</ab>" if @ab
     @xml << "<no>#{no}</no>" if @no
     a2.each {|a| @xml << "<a2>#{a}</a2>"} if @a2

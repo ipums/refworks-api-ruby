@@ -318,7 +318,7 @@ if response.result_code == "200"
   #pp response.sortlocales
   #pp response.sourcetypes
   #pp response.typelabels
-  pp response.references
+  #pp response.references
   #pp response.savedsearches
 else
 #  pp references
@@ -326,7 +326,7 @@ else
 #  pp response.result_msg
 end
 
-#response.references.each { |ref| puts ref.to_refworks_xml}
+response.references.each { |ref| puts ref.to_refworks_xml}
 
 #pp response.body
 #pp response.parsed_response
