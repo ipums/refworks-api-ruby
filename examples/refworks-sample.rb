@@ -65,19 +65,19 @@ response = rwc.request('retrieve', 'quick', {
                        }
 )
 
-response = rwc.request(
-    'retrieve',
-    'advancesearch',
-    {
-        :parameter_list => [
-            {field: "ALLAU", search: "Jones"},
-#            {connector: 'and', field: "T1", search: "Education"}
-        ],
-        :classic => 'true',
-        :pgnum => 1,
-        :pgsize => 20
-    }
-)
+#response = rwc.request(
+#    'retrieve',
+#    'advancesearch',
+#    {
+#        :parameter_list => [
+#            {field: "ALLAU", search: "Jones"},
+##            {connector: 'and', field: "T1", search: "Education"}
+#        ],
+#        :classic => 'true',
+#        :pgnum => 1,
+#        :pgsize => 20
+#    }
+#)
 
 #response = rwc.request(:class_name => 'retrieve',
 #                       :method_name => 'all',
@@ -318,7 +318,7 @@ if response.result_code == "200"
   #pp response.sortlocales
   #pp response.sourcetypes
   #pp response.typelabels
-  #pp response.references
+  pp response.references
   #pp response.savedsearches
 else
 #  pp references
@@ -329,5 +329,5 @@ end
 #response.references.each { |ref| puts ref.to_refworks_xml}
 
 #pp response.body
-pp response.parsed_response
+#pp response.parsed_response
 
