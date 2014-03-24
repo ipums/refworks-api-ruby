@@ -3,13 +3,15 @@ require "mash"
 
 #noinspection RubyTooManyInstanceVariablesInspection,RubyTooManyMethodsInspection
 class Reference
-  attr_accessor :rt, :rt_num, :rt_string, :sr, :id, :a1, :t1, :jf, :jo, :yr, :fd,
-              :vo, :is, :sp, :op, :k1, :ab, :no, :a2, :t2, :ed, :pb, :pp, :a3,
-              :a4, :a5, :t3, :sn, :av, :ad, :an, :la, :cl, :sf, :ot, :lk, :do,
+  attr_accessor :rt, :rt_num, :rt_string, :sr, :id, :t1, :jf, :jo, :yr, :fd,
+              :vo, :is, :sp, :op, :ab, :no, :t2, :ed, :pb, :pp,
+              :t3, :sn, :av, :ad, :an, :la, :cl, :sf, :ot, :lk, :do,
               :cn, :db, :ds, :ip, :rd, :st, :u1, :u2, :u3, :u4, :u5, :u6, :u7,
               :u8, :u9, :u10, :u11, :u12, :u13, :u14, :u15, :ul, :sl, :ll, :cr,
-              :wt, :a6, :wv, :wp, :ol, :pmid, :pmcid,
+              :wt, :wv, :wp, :ol, :pmid, :pmcid,
               :fl, :cd, :md
+  # the following need special setter behavior (custom setters below) so they only get standard readers
+  attr_reader :k1, :a1, :a2, :a3, :a4, :a5, :a6
 
   # expecting a HTTParty-parsed RWResult reference hash to be passed in
   def initialize(rawref)
@@ -43,12 +45,10 @@ class Reference
     # to a Ruby data structure.  Which one it produces depends upon how
     # many authors there are.  All values are converted to Arrays, even one item
     # values, for consistency.  I do this for any field which can have more than one value.
-    # If not an array, and not a value, set nil
-    @a1 = if ref[:a1].class == Array then
-            ref[:a1]
-          else
-            ref[:a1] ? ref[:a1].lines.to_a : nil
-          end
+    # To accomplish this, I use the "friendly name" setters (e.g. self.authors) so that I don't
+    # have to override the auto-generated setters that are created via attr_accessor.  This affects
+    # the a1-a6 fields plus the k1 field.
+    @a1 = self.a1=(ref[:a1])
 
     @t1 = ref[:t1]
 
@@ -62,14 +62,14 @@ class Reference
     @op = ref[:op]
 
     if ref[:k1]
-      @k1 = ref[:k1].class == Array ? ref[:k1] : ref[:k1].lines.to_a
+      self.k1=(ref[:k1])
     end
 
     @ab = ref[:ab]
     @no = ref[:no]
 
     if ref[:a2]
-      @a2 = ref[:a2].class == Array ? ref[:a2] : ref[:a2].lines.to_a
+      self.a2=(ref[:a2])
     end
 
     @t2 = ref[:t2]
@@ -79,15 +79,15 @@ class Reference
     @pp = ref[:pp]
 
     if ref[:a3]
-      @a3 = ref[:a3].class == Array ? ref[:a3] : ref[:a3].lines.to_a
+      self.a3=(ref[:a3])
     end
 
     if ref[:a4]
-      @a4 = ref[:a4].class == Array ? ref[:a4] : ref[:a4].lines.to_a
+      self.a4=(ref[:a4])
     end
 
     if ref[:a5]
-      @a5 = ref[:a5].class == Array ? ref[:a5] : ref[:a5].lines.to_a
+      self.a5=(ref[:a5])
     end
 
     @t3 = ref[:t3]
@@ -129,7 +129,7 @@ class Reference
     @wt = ref[:wt]
 
     if ref[:a6]
-      @a6 = ref[:a6].class == Array ? ref[:a6] : ref[:a6].lines.to_a
+      self.a6=(ref[:a6])
     end
 
     @wv = ref[:wv]
@@ -142,6 +142,38 @@ class Reference
     @fl = ref[:fl]
     @cd = ref[:cd]
     @md = ref[:md]
+  end
+
+  # setters for attributes which need special setter behavior to handle the fact that the input
+  # may be either a string or an Array and we want to standardize on Arrays for our internal storage
+  # this probably could be cleaned up with some sort of metaprogramming hack, but it's only seven of 'em
+
+  def k1=(val)
+    @k1 = val.class == Array ? val : val.lines.to_a
+  end
+
+  def a1=(val)
+    @a1 = val.class == Array ? val : val.lines.to_a
+  end
+
+  def a2=(val)
+    @a2 = val.class == Array ? val : val.lines.to_a
+  end
+
+  def a3=(val)
+    @a3 = val.class == Array ? val : val.lines.to_a
+  end
+
+  def a4=(val)
+    @a4 = val.class == Array ? val : val.lines.to_a
+  end
+
+  def a5=(val)
+    @a5 = val.class == Array ? val : val.lines.to_a
+  end
+
+  def a6=(val)
+    @a6 = val.class == Array ? val : val.lines.to_a
   end
 
   # method to produce RefWorks XML format
@@ -260,7 +292,7 @@ class Reference
   end
 
   def primary_authors=(val)
-    self.a1 = val
+    self.a1 = val.class == Array ? val : val.lines.to_a
   end
 
   # alias
@@ -270,7 +302,7 @@ class Reference
 
   # alias
   def authors=(val)
-    self.a1 = val
+    self.a1 = val.class == Array ? val : val.lines.to_a
   end
 
   def primary_title
@@ -359,7 +391,7 @@ class Reference
   end
 
   def keyword=(val)
-    self.k1=val
+    self.k1 = val
   end
 
   def keywords
@@ -367,7 +399,7 @@ class Reference
   end
 
   def keywords=(val)
-    self.k1=val
+    self.k1 = val
   end
 
   def abstract
@@ -391,7 +423,7 @@ class Reference
   end
 
   def secondary_authors=(val)
-    self.a2=val
+    self.a2= val.class == Array ? val : val.lines.to_a
   end
 
   def secondary_title
@@ -431,7 +463,7 @@ class Reference
   end
 
   def tertiary_authors=(val)
-    self.a3=val
+    self.a3= val.class == Array ? val : val.lines.to_a
   end
 
   def quaternary_authors
@@ -439,7 +471,7 @@ class Reference
   end
 
   def quaternary_authors=(val)
-    self.a4=val
+    self.a4= val.class == Array ? val : val.lines.to_a
   end
 
   def quinary_authors
@@ -447,7 +479,7 @@ class Reference
   end
 
   def quinary_authors=(val)
-    self.a5=val
+    self.a5= val.class == Array ? val : val.lines.to_a
   end
 
   def tertiary_title
@@ -765,7 +797,7 @@ class Reference
   end
 
   def website_editors=(val)
-    self.a6=val
+    self.a6= val.class == Array ? val : val.lines.to_a
   end
 
   def website_version
