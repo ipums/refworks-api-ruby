@@ -45,9 +45,8 @@ class Reference
     # to a Ruby data structure.  Which one it produces depends upon how
     # many authors there are.  All values are converted to Arrays, even one item
     # values, for consistency.  I do this for any field which can have more than one value.
-    # To accomplish this, I use the "friendly name" setters (e.g. self.authors) so that I don't
-    # have to override the auto-generated setters that are created via attr_accessor.  This affects
-    # the a1-a6 fields plus the k1 field.
+    # To accomplish this, I provide custom setters instead of the auto-generated setters
+    # that are created via attr_accessor.  This affects a1-a6 plus k1 attributes.
     @a1 = self.a1=(ref[:a1])
 
     @t1 = ref[:t1]
