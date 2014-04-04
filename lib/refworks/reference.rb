@@ -47,7 +47,7 @@ class Reference
     # values, for consistency.  I do this for any field which can have more than one value.
     # To accomplish this, I provide custom setters instead of the auto-generated setters
     # that are created via attr_accessor.  This affects a1-a6 plus k1 attributes.
-    @a1 = self.a1=(ref[:a1])
+    self.a1=(ref[:a1])
 
     @t1 = ref[:t1]
 
@@ -148,31 +148,31 @@ class Reference
   # this probably could be cleaned up with some sort of metaprogramming hack, but it's only seven of 'em
 
   def k1=(val)
-    @k1 = val.class == Array ? val : val.lines.to_a
+    @k1 = val.is_a? Array ? val : val.lines.to_a
   end
 
   def a1=(val)
-    @a1 = val.class == Array ? val : val.lines.to_a
+    @a1 = val.is_a? Array ? val : val.lines.to_a
   end
 
   def a2=(val)
-    @a2 = val.class == Array ? val : val.lines.to_a
+    @a2 = val.is_a? Array ? val : val.lines.to_a
   end
 
   def a3=(val)
-    @a3 = val.class == Array ? val : val.lines.to_a
+    @a3 = val.is_a? Array ? val : val.lines.to_a
   end
 
   def a4=(val)
-    @a4 = val.class == Array ? val : val.lines.to_a
+    @a4 = val.is_a? Array ? val : val.lines.to_a
   end
 
   def a5=(val)
-    @a5 = val.class == Array ? val : val.lines.to_a
+    @a5 = val.is_a? Array ? val : val.lines.to_a
   end
 
   def a6=(val)
-    @a6 = val.class == Array ? val : val.lines.to_a
+    @a6 = val.is_a? Array ? val : val.lines.to_a
   end
 
   # method to produce RefWorks XML format
@@ -291,7 +291,7 @@ class Reference
   end
 
   def primary_authors=(val)
-    self.a1 = val.class == Array ? val : val.lines.to_a
+    self.a1 = val
   end
 
   # alias
@@ -301,7 +301,7 @@ class Reference
 
   # alias
   def authors=(val)
-    self.a1 = val.class == Array ? val : val.lines.to_a
+    self.a1
   end
 
   def primary_title
@@ -422,7 +422,7 @@ class Reference
   end
 
   def secondary_authors=(val)
-    self.a2= val.class == Array ? val : val.lines.to_a
+    self.a2= val
   end
 
   def secondary_title
@@ -462,7 +462,7 @@ class Reference
   end
 
   def tertiary_authors=(val)
-    self.a3= val.class == Array ? val : val.lines.to_a
+    self.a3= val
   end
 
   def quaternary_authors
@@ -470,7 +470,7 @@ class Reference
   end
 
   def quaternary_authors=(val)
-    self.a4= val.class == Array ? val : val.lines.to_a
+    self.a4= val
   end
 
   def quinary_authors
@@ -478,7 +478,7 @@ class Reference
   end
 
   def quinary_authors=(val)
-    self.a5= val.class == Array ? val : val.lines.to_a
+    self.a5= val
   end
 
   def tertiary_title
@@ -796,7 +796,7 @@ class Reference
   end
 
   def website_editors=(val)
-    self.a6= val.class == Array ? val : val.lines.to_a
+    self.a6= val
   end
 
   def website_version
