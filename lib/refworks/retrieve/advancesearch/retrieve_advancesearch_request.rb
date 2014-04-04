@@ -32,7 +32,17 @@ class RetrieveAdvancesearchRequest < RetrieveRequest
     end
     parameter_list << "</ParameterList>"
 
-    message_body = parameter_list
+    # Folder processing
+    folder_list = ""
+    if params[:folders]
+      folder_list << "<FolderList>"
+      params[:folders].each do |f|
+        folder_list << "<Folder>#{f}</Folder>"
+      end
+      folder_list << "</FolderList>"
+    end
+
+    message_body = "<AdvancedSearchStrategy>" + parameter_list + folder_list + "</AdvancedSearchStrategy>"
 
     # return the request info
     {:params => query_string_params, :body => message_body, :headers => {'Content-type' => 'text/xml'}}

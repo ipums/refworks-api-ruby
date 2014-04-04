@@ -65,19 +65,20 @@ pp rwc.sess
 #                       }
 #)
 
-#response = rwc.request(
-#    'retrieve',
-#    'advancesearch',
-#    {
-#        :parameter_list => [
-#            {field: "ALLAU", search: "Jones"},
-##            {connector: 'and', field: "T1", search: "Education"}
-#        ],
-#        :classic => 'true',
-#        :pgnum => 1,
-#        :pgsize => 20
-#    }
-#)
+response = rwc.request(
+    'retrieve',
+    'advancesearch',
+    {
+        :parameter_list => [
+            {field: "ALLAU", search: "Jones"},
+ #           {connector: 'and', field: "T1", search: "Education"}
+        ],
+        :folders => ['Pending'],
+        :classic => 'true',
+        :pgnum => 1,
+        :pgsize => 20
+    }
+)
 
 #response = rwc.request(:class_name => 'retrieve',
 #                       :method_name => 'all',
@@ -101,8 +102,8 @@ pp rwc.sess
 #                       :method_params => {:search => 'close'},
 #)
 
-response = rwc.request('retrieve', 'folder', {:search => 'Unapproved'},
-)
+#response = rwc.request('retrieve', 'folder', {:search => 'Unapproved'},
+#)
 
 #response = rwc.request(:class_name => 'retrieve',
 #                       :method_name => 'modsince',
