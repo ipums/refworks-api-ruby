@@ -60,24 +60,24 @@ rwc = Refworks.new(RefworksConfig::CONFIG)
 
 pp rwc.sess
 
-response = rwc.request('retrieve', 'quick', {
-                         :search => "Jones",
-                       }
-)
+#response = rwc.request('retrieve', 'quick', {
+#                         :search => "Jones",
+#                       }
+#)
 
-response = rwc.request(
-    'retrieve',
-    'advancesearch',
-    {
-        :parameter_list => [
-            {field: "ALLAU", search: "Jones"},
-#            {connector: 'and', field: "T1", search: "Education"}
-        ],
-        :classic => 'true',
-        :pgnum => 1,
-        :pgsize => 20
-    }
-)
+#response = rwc.request(
+#    'retrieve',
+#    'advancesearch',
+#    {
+#        :parameter_list => [
+#            {field: "ALLAU", search: "Jones"},
+##            {connector: 'and', field: "T1", search: "Education"}
+#        ],
+#        :classic => 'true',
+#        :pgnum => 1,
+#        :pgsize => 20
+#    }
+#)
 
 #response = rwc.request(:class_name => 'retrieve',
 #                       :method_name => 'all',
@@ -101,9 +101,8 @@ response = rwc.request(
 #                       :method_params => {:search => 'close'},
 #)
 
-#response = rwc.request('retrieve', 'folder',
-#                       :method_params => {:search => 'Pending'},
-#)
+response = rwc.request('retrieve', 'folder', {:search => 'Approved'},
+)
 
 #response = rwc.request(:class_name => 'retrieve',
 #                       :method_name => 'modsince',

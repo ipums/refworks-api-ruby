@@ -1,6 +1,6 @@
 
 class Response
-  attr_reader :body, :parsed_response, :result_code, :result_msg, :process_time
+  attr_reader :body, :parsed_response, :result_code, :result_msg, :process_time, :result_msg_code
 
   def initialize(raw_response)
     # The RefWorks API emits invalid XML.  Specifically, when the session is invalid, the ResultMsg field
@@ -20,5 +20,6 @@ class Response
     @result_code = parsed_response["refworks"]["RWResult"]["result"]
     @process_time = parsed_response["refworks"]["RWResult"]["processTime"]
     @result_msg = parsed_response["refworks"]["RWResult"]["resultMsg"]
+    @result_msg_code = parsed_response["refworks"]["RWResult"]["resultMsgCode"]
   end
 end
