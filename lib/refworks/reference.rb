@@ -148,31 +148,31 @@ class Reference
   # this probably could be cleaned up with some sort of metaprogramming hack, but it's only seven of 'em
 
   def k1=(val)
-    @k1 = val.is_a? Array ? val : val.lines.to_a
+    @k1 = val.is_a?(Array) ? val : val.lines.to_a
   end
 
   def a1=(val)
-    @a1 = val.is_a? Array ? val : val.lines.to_a
+    @a1 = val.is_a?(Array) ? val : val.lines.to_a
   end
 
   def a2=(val)
-    @a2 = val.is_a? Array ? val : val.lines.to_a
+    @a2 = val.is_a?(Array) ? val : val.lines.to_a
   end
 
   def a3=(val)
-    @a3 = val.is_a? Array ? val : val.lines.to_a
+    @a3 = val.is_a?(Array) ? val : val.lines.to_a
   end
 
   def a4=(val)
-    @a4 = val.is_a? Array ? val : val.lines.to_a
+    @a4 = val.is_a?(Array) ? val : val.lines.to_a
   end
 
   def a5=(val)
-    @a5 = val.is_a? Array ? val : val.lines.to_a
+    @a5 = val.is_a?(Array) ? val : val.lines.to_a
   end
 
   def a6=(val)
-    @a6 = val.is_a? Array ? val : val.lines.to_a
+    @a6 = val.is_a?(Array) ? val : val.lines.to_a
   end
 
   # method to produce RefWorks XML format

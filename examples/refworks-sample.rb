@@ -101,7 +101,7 @@ pp rwc.sess
 #                       :method_params => {:search => 'close'},
 #)
 
-response = rwc.request('retrieve', 'folder', {:search => 'Approved'},
+response = rwc.request('retrieve', 'folder', {:search => 'Unapproved'},
 )
 
 #response = rwc.request(:class_name => 'retrieve',
