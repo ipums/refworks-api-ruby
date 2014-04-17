@@ -266,6 +266,8 @@ class Reference
 
   def reference_type=(val)
     self.rt = val
+    self.rt_num = self.rt[:typeOrd]
+    self.rt_string = self.rt[:__content__]
   end
 
   # extension
