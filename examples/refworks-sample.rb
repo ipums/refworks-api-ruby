@@ -65,20 +65,20 @@ pp rwc.sess
 #                       }
 #)
 
-#response = rwc.request(
-#    'retrieve',
-#    'advancesearch',
-#    {
-#        :parameter_list => [
-#            {field: "ALLAU", search: "Jones"},
-# #           {connector: 'and', field: "T1", search: "Education"}
-#        ],
-#        :folders => ['Approved'],
-#        :classic => 'true',
-#        :pgnum => 1,
-#        :pgsize => 20
-#    }
-#)
+response = rwc.request(
+    'retrieve',
+    'advancesearch',
+    {
+        :parameter_list => [
+            {field: "ALLAU", search: "Jones"},
+ #           {connector: 'and', field: "T1", search: "Education"}
+        ],
+        :folders => ['Approved'],
+        :classic => 'true',
+        :pgnum => 1,
+        :pgsize => 20
+    }
+)
 
 #response = rwc.request(:class_name => 'retrieve',
 #                       :method_name => 'all',
