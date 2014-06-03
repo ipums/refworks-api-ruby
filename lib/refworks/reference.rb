@@ -841,7 +841,7 @@ class Reference
   end
 
   # extension
-  def modified_data
+  def modified_date
     md
   end
 

@@ -73,7 +73,7 @@ response = rwc.request(
             {field: "ALLAU", search: "Jones"},
  #           {connector: 'and', field: "T1", search: "Education"}
         ],
-        :folders => ['Pending'],
+        :folders => ['Approved'],
         :classic => 'true',
         :pgnum => 1,
         :pgsize => 20
