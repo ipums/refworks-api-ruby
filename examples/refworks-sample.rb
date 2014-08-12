@@ -65,20 +65,20 @@ pp rwc.sess
 #                       }
 #)
 
-response = rwc.request(
-    'retrieve',
-    'advancesearch',
-    {
-        :parameter_list => [
-            {field: "ALLAU", search: "Jones"},
- #           {connector: 'and', field: "T1", search: "Education"}
-        ],
-        :folders => ['Approved'],
-        :classic => 'true',
-        :pgnum => 1,
-        :pgsize => 20
-    }
-)
+#response = rwc.request(
+#    'retrieve',
+#    'advancesearch',
+#    {
+#        :parameter_list => [
+#            {field: "ALLAU", search: "Jones"},
+# #           {connector: 'and', field: "T1", search: "Education"}
+#        ],
+#        :folders => ['Approved'],
+#        :classic => 'true',
+#        :pgnum => 1,
+#        :pgsize => 20
+#    }
+#)
 
 #response = rwc.request(:class_name => 'retrieve',
 #                       :method_name => 'all',
@@ -92,10 +92,7 @@ response = rwc.request(
 #                       :method_params => {:search => "Family and Marriage"},
 #)
 
-#response = rwc.request(:class_name => 'retrieve',
-#                       :method_name => 'byid',
-#                       :method_params => {:id => [42154, 42160, 42400]},
-#)
+response = rwc.request('retrieve', 'byid',{:id => [1]})
 
 #response = rwc.request(:class_name => 'retrieve',
 #                       :method_name => 'dup',
@@ -290,8 +287,14 @@ response = rwc.request(
 #response = rwc.request('retrieve', 'folder',
 #                       {:search => 'TestData'},
 #)
-#refs = response.references
+refs = response.references
+refs.each { |ref| ref.ul = ref.ul + "&fran=iscool"}
+
 #response = rwc.request('reference','add',{:references => refs, :folder => 'Pending', :returnrefs => '1'})
+
+response = rwc.request('reference','edit',{:references => refs, :returnrefs => '1'})
+
+response = rwc.request('retrieve', 'byid',{:id => [1]})
 
 #response = rwc.request('reference','addcomment',{:id => 46868, :comments => [{:title => "New Comment", :name => "Joe User", :inetinfo => "www.cnn.com", :comment => "This is a sample comment."}]})
 
