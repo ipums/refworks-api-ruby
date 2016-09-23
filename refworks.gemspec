@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Fran Fabrizio"]
   s.email       = ["fran@umn.edu"]
-  s.homepage    = "http://github.umn.edu/mpc/refworks-api-ruby"
+  s.homepage    = "http://github.com/mnpopcenter/refworks-api-ruby"
   s.summary     = "A Ruby interface to the RefWorks API."
   s.description = "A Ruby interface to the RefWorks API, implementing a subset of the API (see README for specifics)."
 
